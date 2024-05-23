@@ -1,0 +1,4 @@
+.estructura {
+    display: flex;
+    flex-direction: column;
+}
