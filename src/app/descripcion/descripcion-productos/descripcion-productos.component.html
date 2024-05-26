@@ -1,0 +1,15 @@
+<div style="text-align:center">
+  <h1>Generador de Descripciones de Productos</h1>
+  <div>
+    <input [(ngModel)]="productName" placeholder="Nombre del producto" />
+  </div>
+  <div>
+    <textarea [(ngModel)]="productDetails" placeholder="Detalles del producto"></textarea>
+  </div>
+  <div>
+    <button (click)="generateProductDescription()">Generar Descripción</button>
+  </div>
+  <div>
+    <p>{{ generatedDescription }}</p>
+  </div>
+</div>
