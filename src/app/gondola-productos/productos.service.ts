@@ -6,7 +6,11 @@ import { IProduct } from './productos'
 })
 export class ProductosService {
 
-  constructor() { }
+  constructor() {}
+
+  getProductoId(id: number ): IProduct | undefined{
+    return this.getProductos().find(e=> e.id_producto == id)
+  }
 
   getProductos() : IProduct[] {
     return [

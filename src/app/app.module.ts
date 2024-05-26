@@ -8,13 +8,23 @@ import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { HeaderComponent } from './header/header.component';
 import { GondolaProductosComponent } from './gondola-productos/gondola-productos.component';
 import { FooterComponent } from './footer/footer.component';
+import { CarritoComponent } from './carrito/carrito.component';
+import { ProductoComponent } from './producto/producto.component';
+import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
+import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     GondolaProductosComponent,
-    FooterComponent
+    FooterComponent,
+    CarritoComponent,
+    ProductoComponent,
+    AgregarProductoComponent,
+    InicioSesionComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

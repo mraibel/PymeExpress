@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img [src]="producto?.imagen" class="img-fluid" alt="Imagen del producto">
+    </div>
+    <div class="col-md-6">
+      <h2>{{ producto?.nombre }}</h2>
+      <p>{{ producto?.descripcion }}</p>
+      <h4>{{ producto?.precio | currency }}</h4>
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Cantidad</label>
+        <input type="number" id="quantity" class="form-control" min="1" max="100" />
+      </div>
+      <button class="btn btn-primary" >Agregar al Carrito</button>
+    </div>
+  </div>
+</div>

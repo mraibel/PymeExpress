@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  //Variables para el manejo del carro
+  mostrarCarrito: boolean = false
+  
+  // Manejo del carro
+  toggleCarrito() : void {
+    this.mostrarCarrito = !this.mostrarCarrito
+  }
+
+  receiveData(data: boolean): void {
+    this.mostrarCarrito = false
+  }
 }

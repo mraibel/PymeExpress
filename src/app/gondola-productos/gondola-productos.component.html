@@ -1,33 +1,62 @@
-<div class="container" >
+<div class="container layout my-4">
+  <div class="filtro px-2">
+      <h5>Filtros</h5>
+      
+      <div class="list-group">
+        @for(categoria of categorias; track categoria) {
+          <button class="list-group-item list-group-item-action">
+            {{categoria}}
+          </button>
+        }
+      </div>
+  </div>
 
-    <div class="row"> 
-        <div class="col-md-2">Filtros</div>
-        <!-- Hacer un filtro por categorias (le agregue tipo de producto al modelo de producto) -->
-        
-    </div>
-    
-    <div class=" mt-4 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      @for (product of productos; track product){
-        <div class="col">
-            <div class="card shadow-sm">
-              <img 
-              [src]="product.imagen" 
-              alt="Imagen del producto producto"
-              width="200"
-              height="200"
-              >
-              <div class="card-body">
-                <p class="card-text">{{ product.nombre }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver Producto</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Agregar al carrito</button>
-                  </div>
+  <div class="productos row row-cols-1 row-cols-sm-2 row-cols-md-3 gy-3 gx-0">
+    @for (producto of productosMostrar(); track producto){
+      <div class="col d-flex justify-content-center">
+          <div class="producto card w-auto h-200 shadow d-flex align-items-center pt-2">
+            <img 
+            [src]="producto.imagen" 
+            alt="Imagen del producto"
+            width="auto"
+            height="120"
+            >
+            <div class="card-body">
+              <h5 class="card-text">{{ producto.nombre }}</h5>
+              <div class="d-flex flex-column justify-content-between align-items-center gap-2">
+                <div class="btn-group">
+
+                  <button 
+                  type="button" 
+                  class="btn btn-sm btn-outline-secondary"
+                  [routerLink]="['/producto', producto.id_producto]"
+                  >
+                    Ver Producto
+                  </button>
+
+                  <button 
+                  type="button" 
+                  class="btn btn-sm btn-outline-secondary"
+                  (click)="toggleVentana(producto.id_producto)"
+                  >
+                  Agregar al carrito
+                </button>
+
                 </div>
+                <p class="m-0">{{producto.precio}}</p>
               </div>
             </div>
           </div>
-        }
-      </div>
+        </div>
+      }
+      @if(mostrarVentana) {
+        <app-agregar-producto (sendData)="receiveData($event)" [id]="id_producto"></app-agregar-producto>
+      }
+  </div>
+  <div class="btn-group botones">
+    <button class="btn btn-outline-secondary" (click)="paginaAnterior()">Anterior</button>
+    <button class="btn btn-outline-secondary" (click)="paginaSiguiente()">Siguiente</button>
+  </div>
 </div>
+
     
