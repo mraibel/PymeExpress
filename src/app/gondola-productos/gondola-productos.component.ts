@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from './productos';
-import { ProductosService } from './productos.service';
+import { Component, OnInit } from '@angular/core';
+import { ProductosService } from '../servicios/productos.service';
 
 @Component({
   selector: 'app-gondola-productos',
@@ -8,21 +7,21 @@ import { ProductosService } from './productos.service';
   styleUrl: './gondola-productos.component.css'
 })
 export class GondolaProductosComponent implements OnInit {
-  
-  productos: IProduct [] = []
-  categorias: string[] = []
 
   // Variables para mostrar cierta cantidad de productos
   productosPorPagina: number = 9
   paginaActual = 1
-  productosAMostrar: IProduct[] = []
+  productosAMostrar: any[] = []
+
+  primerPagina: boolean = true
+  ultimaPagina: boolean = false
 
   // Variables para el manejo de ventana del producto
   mostrarVentana: boolean = false
   id_producto: number = 0
 
   constructor(
-    private productosServicios: ProductosService,
+    public productosServicio: ProductosService,
   ) {}
   
   // Manejo de ventana
@@ -37,33 +36,39 @@ export class GondolaProductosComponent implements OnInit {
   
   // Lo primero que carga al renderizar el componente
   ngOnInit(): void {
-    this.productos = this.productosServicios.getProductos()
-    this.productosAMostrar = this.productosMostrar()
-    this.productos.forEach((e) => {
-      if(!this.categorias.includes(e.categoria)){
-        this.categorias.push(e.categoria)
-      }
-    })
   }
 
   //Manejo cantidad de productos por página
-  productosMostrar(): IProduct[] {
+  productosMostrar(): any[] {
     const inicio = (this.paginaActual - 1) * this.productosPorPagina
     const fin = inicio + this.productosPorPagina
-    return this.productos.slice(inicio, fin)
+    return this.productosServicio.productos.slice(inicio, fin)
   }
 
   paginaAnterior() {
     if(this.paginaActual > 1) {
       this.paginaActual--
+      if(this.paginaActual == 1) {
+        this.primerPagina = true
+        this.ultimaPagina = false
+      } else if(this.paginaActual > 1) {
+        this.primerPagina = true
+        this.ultimaPagina = true
+      }
     }
     this.productosAMostrar = this.productosMostrar()
   }
 
   paginaSiguiente() {
-    const ultimaPagina = Math.ceil(this.productos.length / this.productosPorPagina)
+    const ultimaPagina = Math.ceil(this.productosServicio.productos.length / this.productosPorPagina)
     if(this.paginaActual < ultimaPagina) {
       this.paginaActual++
+      if(this.paginaActual == ultimaPagina) {
+        this.primerPagina = false
+        this.ultimaPagina = true
+      } else if(this.paginaActual > 1) {
+        this.primerPagina = false
+      }
     }
     this.productosAMostrar = this.productosMostrar()
   }

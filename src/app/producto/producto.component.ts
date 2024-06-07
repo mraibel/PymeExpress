@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../gondola-productos/productos';
 import { ActivatedRoute } from '@angular/router';
-import { ProductosService } from '../gondola-productos/productos.service';
+import { ProductosService } from '../servicios/productos.service';
 
 @Component({
   selector: 'app-producto',
@@ -10,8 +9,8 @@ import { ProductosService } from '../gondola-productos/productos.service';
 })
 export class ProductoComponent implements OnInit{
 
-  producto: IProduct | undefined
-  id: number = 0
+  producto: any
+  id: any
 
   constructor(
     private route: ActivatedRoute,
@@ -19,14 +18,13 @@ export class ProductoComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.getProducto();
+    this.getIdProducto()
+    this.producto = this.productoServicio.productos.find(e => e.id_producto == this.id)
   }
   
-  getProducto(): void {
+  getIdProducto(): void {
     this.route.params.subscribe(e => {
       this.id = e['id_producto']
     })
-    this.producto = this.productoServicio.getProductoId(this.id)
   }
-
 }

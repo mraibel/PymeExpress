@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ProductosService } from '../gondola-productos/productos.service';
+import { ProductosService } from '../servicios/productos.service';
 import { IProduct } from '../gondola-productos/productos';
 
 @Component({
@@ -14,7 +14,7 @@ export class AgregarProductoComponent {
 
   // Variables del producto a mostrar
   @Input() id: any
-  producto: IProduct | undefined
+  producto: any
 
   constructor(
     private productoServicio: ProductosService
