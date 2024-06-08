@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
-import { IProduct } from '../gondola-productos/productos';
+import { CarritoService } from '../servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -15,9 +15,11 @@ export class AgregarProductoComponent {
   // Variables del producto a mostrar
   @Input() id: any
   producto: any
+  public cantidad: number = 1
 
   constructor(
-    private productoServicio: ProductosService
+    private productoServicio: ProductosService,
+    public carritoServicio: CarritoService
   ) {}
 
   // Manejo del producto a mostrar
@@ -26,7 +28,9 @@ export class AgregarProductoComponent {
   }
   
   getProducto(): void {
-    this.producto = this.productoServicio.getProductoId(this.id)
+    this.productoServicio.getProductoId(this.id).subscribe((producto: any) =>{
+      this.producto = producto
+    })
   }
 
   // Manejo de la ventana

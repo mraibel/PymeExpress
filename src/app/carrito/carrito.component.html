@@ -1,24 +1,62 @@
 <div class="oscuro" (click)="cerrarCarrito()">
-  <div class="carrito card w-75 h-auto shadow p-2" (click)="noCerrar($event)">
+  <div class="carrito card shadow p-2" (click)="noCerrar($event)">
     <h3 class="text-center">Carrito</h3>
-    <table class="table">
-      <thead>
-        <tr class="text-center">
-          <th scope="col">Imagen</th>
-          <th scope="col">Item</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody id="items"></tbody>
-      <tfoot>
-        <tr>
-          <!-- Agregar lógica para saber si esta vacío o tiene algo -->
-          <th scope="row" colspan="5" class="text-center">Carrito vacío - comience a comprar!</th>
-        </tr>
-      </tfoot>
-    </table>
-    <div class="row" id="cards"></div>
+      <table class="d-flex flex-column gap-2">
+        <thead>
+          <tr class="text-center row pb-2">
+            <th scope="col" class="col-1 col-sm-1"></th>
+            <th scope="col" class="col-3 col-sm-3">Imagen</th>
+            <th scope="col" class="col-3 col-sm-3">Producto</th>
+            <th scope="col" class="col-2 col-sm-2 text-truncate">Cantidad</th>
+            <th scope="col" class="col-3 col-sm-3">Total</th>
+          </tr>
+        </thead>
+          <tbody >
+            <div class="scrollable_div">
+            @for(producto of this.carritoServicio.productos; track producto ) {
+              <tr class="row gx-0">
+                <td scope="col" class="col-1 col-sm-1 d-flex align-items-center justify-content-center">
+                  <button type="button" class="btn btn-danger radius rounded-5" (click)="carritoServicio.eliminarProducto(producto[0])">X</button>
+                </td>
+                <td class="col-3 col-sm-3 d-flex justify-content-center align-items-center">
+                  <img
+                  [src]="producto[0]?.imagen | imagenProducto:'../../assets/box.png'" 
+                  [title]="producto[0]?.nombre | uppercase"
+                  class="w-50 h-auto"
+                  >
+                </td>
+                <td class="col-3 col-sm-3 text-center">{{producto[0]?.nombre}}</td>
+                <td class="col-2 col-sm-2 text-center d-flex align-items-center justify-content-center gap-3">
+                  <button type="button" class="btn btn-secondary radius rounded-5" (click)="carritoServicio.actualizarProducto(producto[0], '-')">-</button>
+                  {{producto[1]}}
+                  <button type="button" class="btn btn-secondary radius rounded-5" (click)="carritoServicio.actualizarProducto(producto[0], '+')">+</button>
+                </td>
+                <td class="col-3 col-sm-3 text-center">{{producto[1] * producto[0]?.precio | currency:'CLP'}}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <!-- Agregar lógica para saber si esta vacío o tiene algo -->
+                <th scope="row" colspan="5" class="text-center">Carrito vacío - comience a comprar!</th>
+              </tr>
+            }
+            </div>
+          </tbody>
+        <tfoot class="">
+          <div class="d-flex justify-content-between">
+            <div>
+              @if(this.carritoServicio.productos.length > 0){
+                <p class="m-0">Total a pagar <span class="fw-bold">{{carritoServicio.obtenerTotal() | currency:'CLP'}}</span></p>
+              } @else{
+                <p></p>
+              }
+            </div>
+            <div>
+              <button type="button" class="btn btn-danger" (click)="carritoServicio.limpiarCarrito()">Vaciar Carrito</button>
+              <button type="button" class="btn btn-success">Ir a pagar</button>
+            </div>
+          </div>
+        </tfoot>
+      </table>
   </div>
 </div>
     

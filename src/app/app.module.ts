@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { GondolaProductosComponent } from './gondola-productos/gondola-productos.component';
 import { FooterComponent } from './footer/footer.component';
@@ -15,6 +19,8 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +39,14 @@ import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
     BrowserModule,
     AppRoutingModule,
     NgxBootstrapIconsModule.pick(allIcons),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
