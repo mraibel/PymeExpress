@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AutenticacionService {
 
   usuario: any
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
@@ -17,7 +19,7 @@ export class AutenticacionService {
   ) {}
 
   login(user: any): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/api/autenticacion/iniciar', user)
+    return this.http.post<any>(`${this.apiUrl}/autenticacion/iniciar`, user)
             .pipe(map((data) =>{
               if(data) {
                 this.setToken(data.token)
@@ -27,7 +29,7 @@ export class AutenticacionService {
   }
 
   register(user: any): Observable<any> {
-    return this.http.post<any>("http://localhost:3000/api/autenticacion/registrar", user)
+    return this.http.post<any>(`${this.apiUrl}/autenticacion/registrar`, user)
               .pipe(map((data) =>{
               if(data) {
                 this.setToken(data.token)

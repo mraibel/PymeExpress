@@ -1,51 +1,57 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
-  ipv4: string = '192.168.1.13'
+  private apiUrl = environment.apiUrl;
+  public productos: any[] = [];
+  public categorias: any[] = [];
 
-  public productos: any[] = []
-  public categorias: any[] = []
-  public pymes: any[] = []
-  public precios: number[] = []
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  //LEER PRODUCTOS
+  // LEER PRODUCTOS
   getProductos(): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:3000/api/productos/`).pipe(map((res:any) => res))
+    return this.http.get<any[]>(`${this.apiUrl}/productos/`).pipe(map((res:any) => res));
   }
 
-  // leer producto por id
+  // LEER PRODUCTO POR ID
   getProductoId(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:3000/api/productos/${id}`).pipe(map((data:any) => data))
+    return this.http.get<any[]>(`${this.apiUrl}/productos/${id}`).pipe(map((data:any) => data));
   }
 
-  // leer productos de vendedor
+  // LEER PRODUCTOS DE VENDEDOR
   getProductosVendedor(id: number): Observable<any[]> {
-    return this.http.get<any>(`http://localhost:3000/api/productos/vendedor/${id}`).pipe(map((data:any) => data))
+    return this.http.get<any>(`${this.apiUrl}/productos/vendedor/${id}`).pipe(map((data:any) => data));
   }
 
-  //CREAR PRODUCTOS  
+  // CREAR PRODUCTO
   crearProducto(producto: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:3000/api/productos/`, producto)
+    return this.http.post<any>(`${this.apiUrl}/productos/`, producto);
   }
 
-  //ELIMINAR PRODUCTOS 
+  // ELIMINAR PRODUCTO
   eliminarProducto(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:3000/api/productos/${id}`)
+    return this.http.delete<any>(`${this.apiUrl}/productos/${id}`);
   }
 
-  //ACTUALIZAR PRODUCTOS
-  actualizarProducto(id: number, datos:any): Observable<any> {
-    return this.http.put<any>(`http://localhost:3000/api/productos/${id}`, datos)
+  // ACTUALIZAR PRODUCTO
+  actualizarProducto(id: number, datos: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/productos/actualizar/${id}`, datos);
   }
-  
+
+  // ACTUALIZAR EXISTENCIA
+  actualizarExistencia(id: number, existencia: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/productos/actualizar/${id}`, { existencia });
+  }
+
+  // ACTUALIZAR ESTADO ACTIVO
+  actualizarActivo(id: number, activo: boolean): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/productos/actualizar/${id}`, { activo });
+  }
 }
