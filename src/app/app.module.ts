@@ -20,6 +20,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
 import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
+import { ListarRepartidoresComponent } from './listar-repartidores/listar-repartidores.component';
 
 
 
@@ -35,7 +36,8 @@ import { FiltroProductosComponent } from './filtro-productos/filtro-productos.co
     InicioSesionComponent,
     RegistroComponent,
     ImagenProductoPipe,
-    FiltroProductosComponent
+    FiltroProductosComponent,
+    ListarRepartidoresComponent
   ],
   imports: [
     BrowserModule,
