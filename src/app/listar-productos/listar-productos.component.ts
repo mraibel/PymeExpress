@@ -15,6 +15,7 @@ export class ListarProductosComponent implements OnInit {
   modalRef?: BsModalRef;
   nuevaExistenciaMasiva: number | null = null;
   nuevoPrecioMasivo: number | null = null;
+  productoAEliminar: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +50,18 @@ export class ListarProductosComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
+  abrirModalEliminarProducto(template: TemplateRef<any>, producto: any): void {
+    this.productoAEliminar = producto;
+    this.modalRef = this.modalService.show(template);
+  }
+
+  confirmarEliminarProducto(): void {
+    if (this.productoAEliminar) {
+      this.eliminarProducto(this.productoAEliminar.id_producto);
+      this.modalRef?.hide();
+    }
+  }
+
   guardarExistencia(): void {
     this.productosService.actualizarExistencia(this.productoActual.id_producto, this.productoActual.existencia).subscribe(() => {
       const index = this.productos.findIndex(p => p.id_producto === this.productoActual.id_producto);
@@ -56,6 +69,8 @@ export class ListarProductosComponent implements OnInit {
         this.productos[index].existencia = this.productoActual.existencia;
       }
       this.modalRef?.hide();
+    }, error => {
+      console.error('Error al actualizar la existencia', error);
     });
   }
 
@@ -66,12 +81,16 @@ export class ListarProductosComponent implements OnInit {
         this.productos[index] = { ...this.productoActual };
       }
       this.modalRef?.hide();
+    }, error => {
+      console.error('Error al actualizar el producto', error);
     });
   }
 
   eliminarProducto(id: number): void {
     this.productosService.eliminarProducto(id).subscribe(() => {
       this.productos = this.productos.filter(p => p.id_producto !== id);
+    }, error => {
+      console.error('Error al eliminar el producto', error);
     });
   }
 
@@ -91,6 +110,8 @@ export class ListarProductosComponent implements OnInit {
         producto.existencia = this.nuevaExistenciaMasiva;
         this.productosService.actualizarExistencia(producto.id_producto, producto.existencia).subscribe(() => {
           console.log(`Producto ${producto.id_producto} actualizado`);
+        }, error => {
+          console.error('Error al actualizar la existencia', error);
         });
       }
     });
@@ -104,6 +125,8 @@ export class ListarProductosComponent implements OnInit {
         producto.precio = this.nuevoPrecioMasivo;
         this.productosService.actualizarProducto(producto.id_producto, producto).subscribe(() => {
           console.log(`Producto ${producto.id_producto} actualizado`);
+        }, error => {
+          console.error('Error al actualizar el precio', error);
         });
       }
     });
@@ -126,6 +149,8 @@ export class ListarProductosComponent implements OnInit {
     producto.activo = !producto.activo;
     this.productosService.actualizarActivo(producto.id_producto, producto.activo).subscribe(() => {
       console.log(`Producto ${producto.id_producto} actualizado`);
+    }, error => {
+      console.error('Error al actualizar el estado activo', error);
     });
   }
 }

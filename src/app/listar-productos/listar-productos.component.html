@@ -22,7 +22,7 @@
       <div class="d-flex align-items-center">
         <button class="btn btn-primary btn-sm me-2" (click)="abrirModalEditarExistencia(templateExistencia, producto)">Editar Existencia</button>
         <button class="btn btn-warning btn-sm me-2" (click)="abrirModalEditarProducto(templateProducto, producto)">Editar</button>
-        <button class="btn btn-danger btn-sm me-2" (click)="eliminarProducto(producto.id_producto)">Eliminar</button>
+        <button class="btn btn-danger btn-sm me-2" (click)="abrirModalEliminarProducto(templateConfirmacionEliminarProducto, producto)">Eliminar</button>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" [checked]="producto.activo" (change)="toggleActivo(producto)">
         </div>
@@ -135,6 +135,21 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Cancelar</button>
       <button type="button" class="btn btn-danger" (click)="eliminarProductosSeleccionados()">Eliminar</button>
+    </div>
+  </ng-template>
+
+  <!-- Modal para confirmación de eliminación de un solo producto -->
+  <ng-template #templateConfirmacionEliminarProducto>
+    <div class="modal-header">
+      <h5 class="modal-title">Confirmar Eliminación</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
+    </div>
+    <div class="modal-body">
+      <p>¿Está seguro de que desea eliminar este producto?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="confirmarEliminarProducto()">Eliminar</button>
     </div>
   </ng-template>
 </div>
