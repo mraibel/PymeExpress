@@ -1,0 +1,33 @@
+<div class="d-flex flex-column gap-2">
+    <h5>Filtros</h5>
+
+    <div>
+      <label for="">Buscar:</label>
+      <input type="text">
+    </div>
+    
+    <div class="list-group">
+        <h6>Categoría</h6>
+        @for(categoria of productosServicio.categorias; track categoria) {
+        <button class="list-group-item list-group-item-action">
+          {{categoria}}
+        </button>
+      }
+    </div>
+
+    <div class="list-group">
+        <h6>Pyme</h6>
+        @for(pyme of productosServicio.pymes; track pyme) {
+          <button class="list-group-item list-group-item-action">
+            {{pyme}}
+          </button>
+        }
+    </div>
+
+    <div>
+        <h6>Rango de precios</h6>
+        <input type="range" class="form-range" [(ngModel)]="obtenerRango" [min]='obtenerPrecioMenor()' [max]='obtenerPrecioMayor()'>
+        <p>Rango de precio: {{this.obtenerPrecioMenor() | currency:'CLP'}} - {{obtenerRango | currency:'CLP'}}</p>
+    </div>
+
+</div>

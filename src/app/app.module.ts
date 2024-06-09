@@ -19,6 +19,7 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
+import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
 
 
 
@@ -33,7 +34,8 @@ import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
     AgregarProductoComponent,
     InicioSesionComponent,
     RegistroComponent,
-    ImagenProductoPipe
+    ImagenProductoPipe,
+    FiltroProductosComponent
   ],
   imports: [
     BrowserModule,

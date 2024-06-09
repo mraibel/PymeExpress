@@ -4,6 +4,7 @@
       <img [src]="producto?.imagen | imagenProducto:'../../assets/box.png'" class="img-fluid" alt="Imagen del producto">
     </div>
     <div class="col-md-6">
+      <a class="btn btn-link p-0 text-black"><i-bs name="info-circle"/> Vendido por {{producto.vendedor.pyme.nombre}}</a>
       <h2>{{ producto?.nombre }}</h2>
       <p>{{ producto?.descripcion }}</p>
       <h4>{{ producto?.precio | currency:'CLP'}}</h4>
