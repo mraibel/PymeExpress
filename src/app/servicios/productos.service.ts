@@ -11,7 +11,8 @@ export class ProductosService {
   private apiUrl = environment.apiUrl;
   public productos: any[] = [];
   public categorias: any[] = [];
-
+  public pymes: any[] = [];
+  public precios: number[] = [];
 
   constructor(private http: HttpClient) { }
 
