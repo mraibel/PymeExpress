@@ -12,6 +12,7 @@ export class ProductosService {
   public productos: any[] = [];
   public categorias: any[] = [];
 
+
   constructor(private http: HttpClient) { }
 
   // LEER PRODUCTOS
