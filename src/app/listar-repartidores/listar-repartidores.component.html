@@ -1,1 +1,10 @@
-<p>listar-repartidores works!</p>
+<div class="container">
+    <h2>Elegir Repartidor</h2>
+    <ul class="list-group">
+      <li *ngFor="let repartidor of repartidores" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ repartidor.nombre }}
+        <button class="btn btn-primary" (click)="elegirRepartidor(repartidor)">Elegir</button>
+      </li>
+    </ul>
+  </div>
+  

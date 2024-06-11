@@ -1,23 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { RepartidorService } from '../services/repartidor.service';
 
-import { ListarRepartidoresComponent } from './listar-repartidores.component';
+@Component({
+  selector: 'app-listar-repartidores',
+  templateUrl: './listar-repartidores.component.html',
+  styleUrls: ['./listar-repartidores.component.css']
+})
+export class ListarRepartidoresComponent implements OnInit {
+  repartidores: any[] = [];
 
-describe('ListarRepartidoresComponent', () => {
-  let component: ListarRepartidoresComponent;
-  let fixture: ComponentFixture<ListarRepartidoresComponent>;
+  constructor(private repartidorService: RepartidorService) { }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ListarRepartidoresComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(ListarRepartidoresComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit(): void {
+    this.obtenerRepartidores();
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  obtenerRepartidores(): void {
+    this.repartidorService.getRepartidores().subscribe(
+      data => this.repartidores = data,
+      error => console.error(error)
+    );
+  }
+  elegirRepartidor(_t5: any) {
+    throw new Error('Method not implemented.');
+    }
+}
