@@ -13,6 +13,7 @@ export class ProductosService {
   public categorias: any[] = [];
   public pymes: any[] = [];
   public precios: number[] = [];
+  public productosRecomendados: any[]= [];
 
   constructor(private http: HttpClient) { }
 

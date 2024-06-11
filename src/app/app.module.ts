@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
 import { ListarProductosComponent } from './listar-productos/listar-productos.component';
 import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
+import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
+import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { FiltroProductosComponent } from './filtro-productos/filtro-productos.co
     RegistroComponent,
     ImagenProductoPipe,
     ListarProductosComponent,
-    FiltroProductosComponent
+    FiltroProductosComponent,
+    PaginaInicioComponent,
+    ProductosRecomendadosComponent
   ],
   imports: [
     BrowserModule,
