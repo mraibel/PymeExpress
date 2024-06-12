@@ -31,5 +31,5 @@ export class AppComponent implements OnInit{
       console.log(err)
     })
   }
-
+  
 }
