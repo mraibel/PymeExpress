@@ -14,18 +14,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.productosServicio.getProductos().subscribe((data: any[])=>{
-      this.productosServicio.productos = data
-      data.forEach((e) => {
-        if(!this.productosServicio.categorias.includes(e.categoria)){
-          this.productosServicio.categorias.push(e.categoria)
-        }
-        if(!this.productosServicio.pymes.includes(e.vendedor.pyme.nombre)){
-          this.productosServicio.pymes.push(e.vendedor.pyme.nombre)
-        }
-        if(!this.productosServicio.precios.includes(e.precio)){
-          this.productosServicio.precios.push(e.precio)
-        }
-      })
+      console.log('Datos de productos cargados')
     },
     err =>{
       console.log(err)
@@ -36,7 +25,6 @@ export class AppComponent implements OnInit{
     
     for (let index = 0; index < 4; index++) {
       let indexProducto = Math.floor(Math.random()*this.productosServicio.productos.length)
-      console.log(indexProducto)
       this.productosServicio.productosRecomendados.push(this.productosServicio.productos.find((e,i)=>i ==indexProducto))
     }
   }

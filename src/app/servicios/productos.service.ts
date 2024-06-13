@@ -19,7 +19,27 @@ export class ProductosService {
 
   // LEER PRODUCTOS
   getProductos(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/productos/`).pipe(map((res:any) => res));
+    return this.http.get<any[]>(`${this.apiUrl}/productos/`).pipe(
+      map((res:any) => {
+        this.productos = res
+        res.forEach((producto: any) => {
+          if(!this.categorias.includes(producto.categoria)) {
+            this.categorias.push(producto.categoria)
+          }
+        })
+        res.forEach((producto: any) => {
+          if(!this.pymes.includes(producto.vendedor.pyme.nombre)) {
+            this.pymes.push(producto.vendedor.pyme.nombre)
+          }
+        })
+        res.forEach((producto: any) => {
+          if(!this.precios.includes(producto.precio)) {
+            this.precios.push(producto.precio)
+          }
+        })
+        return res
+      }
+    ))
   }
 
   // LEER PRODUCTO POR ID
