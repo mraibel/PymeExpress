@@ -21,6 +21,7 @@ import { ListarProductosComponent } from './listar-productos/listar-productos.co
 import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
 import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { VisualizarProductoComponent } from './visualizar-producto/visualizar-producto.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     ImagenProductoPipe,
     ListarProductosComponent,
     FiltroProductosComponent,
-    CrearProductoComponent
+    CrearProductoComponent,
+    VisualizarProductoComponent
   ],
   imports: [
     BrowserModule,
