@@ -1,0 +1,79 @@
+<div class="container mt-4">
+    <div class="accordion-wrapper">
+      <div class="accordion" id="productAccordion">
+        <div *ngFor="let item of items; let i = index" class="accordion-item">
+          <h2 class="accordion-header" id="heading{{i}}">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i === 0 ? 'true' : 'false'" [attr.aria-controls]="'collapse' + i">
+              {{ item.title }}
+            </button>
+          </h2>
+          <div [id]="'collapse' + i" class="accordion-collapse collapse" [class.show]="i === 0" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#productAccordion">
+            <div class="accordion-body">
+              <ng-container [ngSwitch]="item.title">
+                <div *ngSwitchCase="'Nombre'">
+                  <label for="nombre">Nombre del Producto</label>
+                  <input id="nombre" class="form-control" type="text" [(ngModel)]="formData.nombre">
+                </div>
+                <div *ngSwitchCase="'Stock'">
+                  <label for="stock">Stock</label>
+                  <input id="stock" class="form-control" type="number" [(ngModel)]="formData.stock">
+                </div>
+                <div *ngSwitchCase="'Fotos'">
+                  <label for="fotos">Fotos</label>
+                  <select id="fotos" class="form-control" [(ngModel)]="formData.fotos">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="foto1">Foto 1</option>
+                    <option value="foto2">Foto 2</option>
+                  </select>
+                </div>
+                <div *ngSwitchCase="'Precio'">
+                  <label for="precio">Precio</label>
+                  <input id="precio" class="form-control" type="number" [(ngModel)]="formData.precio">
+                </div>
+                <div *ngSwitchCase="'Caracteristicas Principales'">
+                  <label for="caracteristicasPrincipales">Características Principales</label>
+                  <input id="caracteristicasPrincipales" class="form-control" type="text" [(ngModel)]="formData.carcateristicasPrincipales">
+                </div>
+                <div *ngSwitchCase="'Caracteristicas Secundarias'">
+                  <label for="caracteristicasSecundarias">Características Secundarias</label>
+                  <input id="caracteristicasSecundarias" class="form-control" type="text" [(ngModel)]="formData.carcateristicasSecundarias">
+                </div>
+                <div *ngSwitchCase="'Garantia'">
+                  <label for="garantia">Garantía</label>
+                  <select id="garantia" class="form-control" [(ngModel)]="formData.garantia">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="1mes">1 mes</option>
+                    <option value="3meses">3 meses</option>
+                    <option value="6meses">6 meses</option>
+                  </select>
+                </div>
+                <div *ngSwitchCase="'Categoria'">
+                  <label for="categoria">Categoría</label>
+                  <select id="categoria" class="form-control" [(ngModel)]="formData.categoria">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="electronica">Electrónica</option>
+                    <option value="juguetes">Juguetes</option>
+                    <option value="ropa">Ropa</option>
+                  </select>
+                </div>
+                <div *ngSwitchCase="'Formas de pago'">
+                  <label for="formasDePago">Formas de Pago</label>
+                  <select id="formasDePago" class="form-control" [(ngModel)]="formData.formasDePago">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                    <option value="transferencia">Transferencia Bancaria</option>
+                    <option value="efectivo">Efectivo</option>
+                  </select>
+                </div>
+                <div *ngSwitchCase="'Descripción'">
+                  <label for="descripcion">Descripción</label>
+                  <textarea id="descripcion" class="form-control" [(ngModel)]="formData.descripcion"></textarea>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
