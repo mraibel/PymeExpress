@@ -21,7 +21,7 @@ export class FiltroProductosComponent implements OnInit{
 
   set _precio(value: number) {
     this._precios = value
-    console.log(this._precios.toString().split(',')[1])
+    console.log(this._precios.toString().split(',')[0])
     console.log(this._precios.toString().split(',')[1])
   }
   
