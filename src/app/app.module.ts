@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
 import { ListarProductosComponent } from './listar-productos/listar-productos.component';
 import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
+import { CrearProductoComponent } from './crear-producto/crear-producto.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { FiltroProductosComponent } from './filtro-productos/filtro-productos.co
     RegistroComponent,
     ImagenProductoPipe,
     ListarProductosComponent,
-    FiltroProductosComponent
+    FiltroProductosComponent,
+    CrearProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,9 @@ import { FiltroProductosComponent } from './filtro-productos/filtro-productos.co
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    ModalModule.forRoot() 
+    ModalModule.forRoot(),
+    AccordionModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
