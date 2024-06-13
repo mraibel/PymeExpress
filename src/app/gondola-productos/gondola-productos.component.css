@@ -45,3 +45,9 @@
         grid-auto-flow: row;
     }
 }
+
+.scrollable_div {
+    max-height: 350px; /* ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
