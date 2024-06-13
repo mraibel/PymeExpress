@@ -5,7 +5,9 @@ import { ProductoComponent } from './producto/producto.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ListarProductosComponent } from './listar-productos/listar-productos.component'; 
+import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
+
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'inicioSesion', component: InicioSesionComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'productos-pyme/:id', component: ListarProductosComponent },
+  { path: 'crear-producto', component: CrearProductoComponent },
   { path: 'productos', component: GondolaProductosComponent }
 ];
 

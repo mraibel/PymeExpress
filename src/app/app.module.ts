@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImagenProductoPipe } from './pipe/imagen-producto.pipe';
 import { ListarProductosComponent } from './listar-productos/listar-productos.component';
 import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
+import { CrearProductoComponent } from './crear-producto/crear-producto.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { VisualizarProductoComponent } from './visualizar-producto/visualizar-producto.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -37,6 +40,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ImagenProductoPipe,
     ListarProductosComponent,
     FiltroProductosComponent,
+    CrearProductoComponent,
+    VisualizarProductoComponent,
     PaginaInicioComponent,
     ProductosRecomendadosComponent
   ],
