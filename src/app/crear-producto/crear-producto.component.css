@@ -1,0 +1,40 @@
+.accordion-wrapper {
+    max-width: 800px; /* Ajusta este valor según el ancho que desees */
+    margin: 0 auto;
+  }
+  
+  .accordion-item {
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Borde definido */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); /* Sombra hacia abajo-derecha */
+  }
+  
+  .accordion-header {
+    border-radius: 8px; /* Bordes redondeados */
+  }
+  
+  .accordion-button {
+    font-weight: bold;
+    color: black;
+    border-radius: 8px; /* Bordes redondeados */
+  }
+  
+  .accordion-button:not(.collapsed) {
+    color: black;
+    background-color: #e8e8e8;
+  }
+  
+  .accordion-body {
+    background-color: #fff;
+    border-top: 1px solid #ddd; /* Borde superior definido */
+    border-bottom-left-radius: 8px; /* Bordes redondeados en la parte inferior */
+    border-bottom-right-radius: 8px; /* Bordes redondeados en la parte inferior */
+  }
+  
+  .form-control {
+    margin-bottom: 15px;
+    border-radius: 4px; /* Bordes redondeados para los inputs */
+    border: 1px solid #ccc; /* Borde definido para los inputs */
+  }
+  
