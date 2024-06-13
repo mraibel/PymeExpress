@@ -5,11 +5,11 @@
         <div class="accordion" id="productAccordion">
           <div *ngFor="let item of items; let i = index" class="accordion-item">
             <h2 class="accordion-header" id="heading{{i}}">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i === 0 ? 'true' : 'false'" [attr.aria-controls]="'collapse' + i">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i">
                 {{ item.title }}
               </button>
             </h2>
-            <div [id]="'collapse' + i" class="accordion-collapse collapse" [class.show]="i === 0" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#productAccordion">
+            <div [id]="'collapse' + i" class="accordion-collapse collapse show" [attr.aria-labelledby]="'heading' + i">
               <div class="accordion-body">
                 <ng-container [ngSwitch]="item.title">
                   <div *ngSwitchCase="'Nombre'">
@@ -22,7 +22,7 @@
                   </div>
                   <div *ngSwitchCase="'Fotos'">
                     <label for="fotos">Fotos</label>
-                    <input id="fotos" class="form-control" type="text" [(ngModel)]="formData.fotos">
+                    <input id="fotos" class="form-control" type="file" (change)="onFileChange($event)" accept="image/png, image/jpeg">
                   </div>
                   <div *ngSwitchCase="'Precio'">
                     <label for="precio">Precio</label>
@@ -30,20 +30,7 @@
                   </div>
                   <div *ngSwitchCase="'Caracteristicas Principales'">
                     <label for="caracteristicasPrincipales">Características Principales</label>
-                    <input id="caracteristicasPrincipales" class="form-control" type="text" [(ngModel)]="formData.carcateristicasPrincipales">
-                  </div>
-                  <div *ngSwitchCase="'Caracteristicas Secundarias'">
-                    <label for="caracteristicasSecundarias">Características Secundarias</label>
-                    <input id="caracteristicasSecundarias" class="form-control" type="text" [(ngModel)]="formData.carcateristicasSecundarias">
-                  </div>
-                  <div *ngSwitchCase="'Garantia'">
-                    <label for="garantia">Garantía</label>
-                    <select id="garantia" class="form-control" [(ngModel)]="formData.garantia">
-                      <option value="" disabled selected>Selecciona una opción</option>
-                      <option value="1mes">1 mes</option>
-                      <option value="3meses">3 meses</option>
-                      <option value="6meses">6 meses</option>
-                    </select>
+                    <textarea id="caracteristicasPrincipales" class="form-control" type="text" [(ngModel)]="formData.carcateristicasPrincipales"></textarea>
                   </div>
                   <div *ngSwitchCase="'Categoria'">
                     <label for="categoria">Categoría</label>
@@ -66,6 +53,7 @@
                   <div *ngSwitchCase="'Descripción'">
                     <label for="descripcion">Descripción</label>
                     <textarea id="descripcion" class="form-control" [(ngModel)]="formData.descripcion"></textarea>
+                    <button class="btn btn-primary mt-2" (click)="generarDescripcion()">Generar Descripción</button>
                   </div>
                 </ng-container>
               </div>

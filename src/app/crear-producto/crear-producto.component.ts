@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-crear-producto',
@@ -12,8 +13,6 @@ export class CrearProductoComponent {
     { title: 'Fotos', content: '' },
     { title: 'Precio', content: '' },
     { title: 'Caracteristicas Principales', content: '' },
-    { title: 'Caracteristicas Secundarias', content: '' },
-    { title: 'Garantia', content: '' },
     { title: 'Categoria', content: '' },
     { title: 'Formas de pago', content: '' },
     { title: 'Descripción', content: '' }
@@ -25,10 +24,29 @@ export class CrearProductoComponent {
     fotos: '',
     precio: '',
     carcateristicasPrincipales: '',
-    carcateristicasSecundarias: '',
-    garantia: '',
     categoria: '',
     formasDePago: '',
     descripcion: ''
   };
+
+  constructor(private http: HttpClient) {}
+
+  onFileChange(event: any) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.formData.fotos = reader.result as string;
+      };
+    }
+  }
+
+  generarDescripcion() {
+    this.http.post('http://127.0.0.1:3000/api/description/generate-description', this.formData).subscribe((response: any) => {
+      this.formData.descripcion = response.description;
+    });
+  }
 }
