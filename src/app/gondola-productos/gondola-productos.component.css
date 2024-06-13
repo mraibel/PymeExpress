@@ -17,3 +17,31 @@
     .productos { grid-area: 2 / 2 / 3 / 4; }
     .botones { grid-area: 1 / 3 / 2 / 4; }
 }
+
+.lay-productos {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .lay-productos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 10px;
+        grid-auto-flow: row;
+    }
+}
+
+@media (min-width: 1200px) {
+    .lay-productos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 10px;
+        grid-auto-flow: row;
+    }
+}

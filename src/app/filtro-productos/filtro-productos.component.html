@@ -26,8 +26,8 @@
 
     <div>
         <h6>Rango de precios</h6>
-        <input type="range" class="form-range" [(ngModel)]="obtenerRango" [min]='obtenerPrecioMenor()' [max]='obtenerPrecioMayor()'>
-        <p>Rango de precio: {{this.obtenerPrecioMenor() | currency:'CLP'}} - {{obtenerRango | currency:'CLP'}}</p>
+        <input type="range" class="form-range" [(ngModel)]="obtenerRango" [min]='obtenerPrecioMenor()' [max]='obtenerPrecioMayor()' [value]="obtenerPrecioMayor()">
+        <p>Rango de precio: {{this.obtenerPrecioMenor() | currency:'CLP'}} - {{this.rangoMaximo() | currency:'CLP' }}</p>
     </div>
 
 </div>

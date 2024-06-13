@@ -1,0 +1,35 @@
+
+.color-comprar{
+    background-color: rgb(255, 138, 49);
+    
+}
+.color-comprar:hover{
+    background-color: rgb(255, 154, 76);
+}
+
+
+.position-fixed img {
+    object-fit: cover;
+  }
+  .banner-background {
+    top: -250px;
+    left: 0;
+    z-index: -1;
+  }
+
+  .banner-background img {
+    height: calc(100vh + 20px);
+    object-fit: cover;
+  }
+  
+  /* Media query para dispositivos móviles */
+  @media (max-width: 768px) {
+    .banner-background {
+      top: 250px;
+    }
+  
+    .banner-background img {
+      height: calc(100vh - 100px);
+    }
+  }
+

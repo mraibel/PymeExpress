@@ -17,6 +17,14 @@ export class FiltroProductosComponent implements OnInit{
   ngOnInit() {
   }
 
+  rangoMaximo(): number {
+    if(this.rango == 0) {
+      return this.obtenerPrecioMayor()
+    } else {
+      return this.rango
+    }
+  }
+
   get obtenerRango(): number {
     return this.rango
   }

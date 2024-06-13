@@ -22,6 +22,8 @@ import { FiltroProductosComponent } from './filtro-productos/filtro-productos.co
 import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { VisualizarProductoComponent } from './visualizar-producto/visualizar-producto.component';
+import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
+import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { VisualizarProductoComponent } from './visualizar-producto/visualizar-pr
     ListarProductosComponent,
     FiltroProductosComponent,
     CrearProductoComponent,
-    VisualizarProductoComponent
+    VisualizarProductoComponent,
+    PaginaInicioComponent,
+    ProductosRecomendadosComponent
   ],
   imports: [
     BrowserModule,

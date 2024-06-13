@@ -30,6 +30,15 @@ export class AppComponent implements OnInit{
     err =>{
       console.log(err)
     })
+    this.productosMostrar() 
   }
-
+  productosMostrar() {
+    
+    for (let index = 0; index < 4; index++) {
+      let indexProducto = Math.floor(Math.random()*this.productosServicio.productos.length)
+      console.log(indexProducto)
+      this.productosServicio.productosRecomendados.push(this.productosServicio.productos.find((e,i)=>i ==indexProducto))
+    }
+  }
+  
 }
