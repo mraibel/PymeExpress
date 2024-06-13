@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
+import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-filtro-productos',
@@ -8,29 +9,28 @@ import { ProductosService } from '../servicios/productos.service';
 })
 export class FiltroProductosComponent implements OnInit{
 
+  _precios = 0
+
   constructor(
     public productosServicio: ProductosService
   ){}
 
-  rango: number = 0
-
-  ngOnInit() {
+  ngOnInit(): void {
+  
   }
 
-  rangoMaximo(): number {
-    if(this.rango == 0) {
-      return this.obtenerPrecioMayor()
-    } else {
-      return this.rango
+  set _precio(value: number) {
+    this._precios = value
+    console.log(this._precios.toString().split(',')[1])
+    console.log(this._precios.toString().split(',')[1])
+  }
+  
+  getOpciones(): Options {
+    const opciones: Options = {
+      floor: this.obtenerPrecioMenor(),
+      ceil: this.obtenerPrecioMayor()
     }
-  }
-
-  get obtenerRango(): number {
-    return this.rango
-  }
-
-  set obtenerRango(value: any){
-    this.rango = value
+    return opciones
   }
 
   obtenerPrecioMayor(): number{

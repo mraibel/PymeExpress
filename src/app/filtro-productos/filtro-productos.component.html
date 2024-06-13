@@ -1,6 +1,4 @@
 <div class="d-flex flex-column gap-2">
-    <h5>Filtros</h5>
-
     <div>
       <label for="">Buscar:</label>
       <input type="text">
@@ -26,8 +24,8 @@
 
     <div>
         <h6>Rango de precios</h6>
-        <input type="range" class="form-range" [(ngModel)]="obtenerRango" [min]='obtenerPrecioMenor()' [max]='obtenerPrecioMayor()' [value]="obtenerPrecioMayor()">
-        <p>Rango de precio: {{this.obtenerPrecioMenor() | currency:'CLP'}} - {{this.rangoMaximo() | currency:'CLP' }}</p>
+        <ngx-slider [(ngModel)]="_precio" [options]="getOpciones()" [value]="obtenerPrecioMenor()" [highValue]="obtenerPrecioMayor()"></ngx-slider>
+        <p>{{_precio}}</p>
     </div>
 
 </div>

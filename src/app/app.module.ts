@@ -21,6 +21,7 @@ import { ListarProductosComponent } from './listar-productos/listar-productos.co
 import { FiltroProductosComponent } from './filtro-productos/filtro-productos.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recome
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    ModalModule.forRoot() 
+    ModalModule.forRoot(),
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
