@@ -63,10 +63,10 @@ export class ListarProductosComponent implements OnInit {
   }
 
   guardarExistencia(): void {
-    this.productosService.actualizarExistencia(this.productoActual.id_producto, this.productoActual.existencia).subscribe(() => {
+    this.productosService.actualizarCantidad(this.productoActual.id_producto, this.productoActual.cantidad).subscribe(() => {
       const index = this.productos.findIndex(p => p.id_producto === this.productoActual.id_producto);
       if (index !== -1) {
-        this.productos[index].existencia = this.productoActual.existencia;
+        this.productos[index].cantidad = this.productoActual.cantidad;
       }
       this.modalRef?.hide();
     }, error => {
@@ -107,8 +107,8 @@ export class ListarProductosComponent implements OnInit {
     const productosSeleccionados = this.productos.filter(producto => producto.selected);
     productosSeleccionados.forEach(producto => {
       if (this.nuevaExistenciaMasiva !== null) {
-        producto.existencia = this.nuevaExistenciaMasiva;
-        this.productosService.actualizarExistencia(producto.id_producto, producto.existencia).subscribe(() => {
+        producto.cantidad = this.nuevaExistenciaMasiva;
+        this.productosService.actualizarCantidad(producto.id_producto, producto.cantidad).subscribe(() => {
           console.log(`Producto ${producto.id_producto} actualizado`);
         }, error => {
           console.error('Error al actualizar la existencia', error);

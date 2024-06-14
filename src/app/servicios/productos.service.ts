@@ -47,9 +47,9 @@ export class ProductosService {
     return this.http.put<any>(`${this.apiUrl}/productos/actualizar/${id}`, datos);
   }
 
-  // ACTUALIZAR EXISTENCIA
-  actualizarExistencia(id: number, existencia: number): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/productos/actualizar/${id}`, { existencia });
+  // ACTUALIZAR CANTIDAD
+  actualizarCantidad(id: number, cantidad: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/productos/actualizar/${id}`, { cantidad });
   }
 
   // ACTUALIZAR ESTADO ACTIVO

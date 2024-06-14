@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-primary btn-sm me-2" (click)="abrirModalEditarExistencia(templateExistencia, producto)">Editar Existencia</button>
+        <button class="btn btn-primary btn-sm me-2" (click)="abrirModalEditarExistencia(templateExistencia, producto)">Editar Stock</button>
         <button class="btn btn-warning btn-sm me-2" (click)="abrirModalEditarProducto(templateProducto, producto)">Editar</button>
         <button class="btn btn-danger btn-sm me-2" (click)="abrirModalEliminarProducto(templateConfirmacionEliminarProducto, producto)">Eliminar</button>
         <div class="form-check form-switch">
@@ -39,7 +39,7 @@
     <div class="modal-body">
       <div class="mb-3">
         <label for="existencia" class="form-label">Existencia</label>
-        <input type="number" class="form-control" id="existencia" [(ngModel)]="productoActual.existencia">
+        <input type="number" class="form-control" id="existencia" [(ngModel)]="productoActual.cantidad">
       </div>
     </div>
     <div class="modal-footer">
