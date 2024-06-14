@@ -37,22 +37,30 @@ export class ListarProductosComponent implements OnInit {
   }
 
   abrirModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template);
+    this.cerrarModalActual().then(() => {
+      this.modalRef = this.modalService.show(template, { ignoreBackdropClick: true, keyboard: false });
+    });
   }
 
   abrirModalEditarExistencia(template: TemplateRef<any>, producto: any): void {
-    this.productoActual = { ...producto };
-    this.modalRef = this.modalService.show(template);
+    this.cerrarModalActual().then(() => {
+      this.productoActual = { ...producto };
+      this.modalRef = this.modalService.show(template, { ignoreBackdropClick: true, keyboard: false });
+    });
   }
 
   abrirModalEditarProducto(template: TemplateRef<any>, producto: any): void {
-    this.productoActual = { ...producto };
-    this.modalRef = this.modalService.show(template);
+    this.cerrarModalActual().then(() => {
+      this.productoActual = { ...producto };
+      this.modalRef = this.modalService.show(template, { ignoreBackdropClick: true, keyboard: false });
+    });
   }
 
   abrirModalEliminarProducto(template: TemplateRef<any>, producto: any): void {
-    this.productoAEliminar = producto;
-    this.modalRef = this.modalService.show(template);
+    this.cerrarModalActual().then(() => {
+      this.productoAEliminar = producto;
+      this.modalRef = this.modalService.show(template, { ignoreBackdropClick: true, keyboard: false });
+    });
   }
 
   confirmarEliminarProducto(): void {
@@ -97,7 +105,9 @@ export class ListarProductosComponent implements OnInit {
   realizarCambiosMasivos(template: TemplateRef<any>): void {
     const productosSeleccionados = this.productos.filter(producto => producto.selected);
     if (productosSeleccionados.length > 0) {
-      this.abrirModal(template);
+      this.cerrarModalActual().then(() => {
+        this.abrirModal(template);
+      });
     } else {
       console.log('No hay productos seleccionados');
     }
@@ -151,6 +161,22 @@ export class ListarProductosComponent implements OnInit {
       console.log(`Producto ${producto.id_producto} actualizado`);
     }, error => {
       console.error('Error al actualizar el estado activo', error);
+    });
+  }
+
+  seleccionarTodos(event: any): void {
+    const checked = event.target.checked;
+    this.productos.forEach(producto => producto.selected = checked);
+  }
+
+  private cerrarModalActual(): Promise<void> {
+    return new Promise((resolve) => {
+      if (this.modalRef) {
+        this.modalRef.hide();
+        setTimeout(() => resolve(), 300); // Esperar un poco antes de resolver
+      } else {
+        resolve();
+      }
     });
   }
 }
