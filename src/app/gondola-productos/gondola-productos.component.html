@@ -1,6 +1,6 @@
 <div class="container layout my-4">
   <div class="filtro px-2">
-    <app-filtro-productos></app-filtro-productos>
+    <app-filtro-productos (productosFiltrados)="addItem($event)"></app-filtro-productos>
   </div>
 
   <div class="productos row row-cols-1 row-cols-sm-2 row-cols-md-3 gy-3 gx-0">
