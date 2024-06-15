@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -10,12 +11,12 @@ import { environment } from '../../../environments/environment';
 })
 export class AutenticacionService {
 
-  usuario: any
   private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
-    private cookies: CookieService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   login(user: any): Observable<any> {
@@ -23,35 +24,35 @@ export class AutenticacionService {
             .pipe(map((data) =>{
               if(data) {
                 this.setToken(data.token)
-                this.setUsuarioIniciado(data.usuario)
+                this.setUsuario(data.usuario, data.usuario.roles)
+                
               }
             }))
   }
 
   register(user: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/autenticacion/registrar`, user)
-              .pipe(map((data) =>{
-              if(data) {
-                this.setToken(data.token)
-                this.setUsuarioIniciado(data.usuario)
-              }
-              }))
   }
 
   setToken(token: string): void {
-    this.cookies.set("token", token);
+    localStorage.setItem('token', token)
   }
 
-  setUsuarioIniciado(user: any) {
-    this.usuario = user
+  setUsuario(usuario: any, roles: any) {
+    localStorage.setItem('usuario', JSON.stringify(usuario))
+    localStorage.setItem('rolesUsuario', JSON.stringify(roles[0].tipo))
   }
 
-  getUsuarioIniciado(): any {
-    console.log(this.cookies.get('token'))
+  getUsuario(): any {
+    return localStorage.getItem('usuario')
   }
 
   cerrarSesion(): void {
-    this.cookies.delete("token")
+    localStorage.removeItem('token')
+    localStorage.removeItem('usuario')
+    localStorage.removeItem('rolesUsuario')
+    this.toastr.success('Sesion cerrada')
+    this.router.navigate([''])
   }
 
 }

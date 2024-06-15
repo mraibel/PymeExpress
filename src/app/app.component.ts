@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from './servicios/productos.service';
+import { AutenticacionService } from './servicios/autenticacion/autenticacion.service';
+import { UsuariosService } from './servicios/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,9 @@ import { ProductosService } from './servicios/productos.service';
 export class AppComponent implements OnInit{
 
   constructor(
-    private productosServicio: ProductosService
-  ) {}
+    private productosServicio: ProductosService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.productosServicio.getProductos().subscribe((data: any[])=>{
@@ -19,8 +22,8 @@ export class AppComponent implements OnInit{
     err =>{
       console.log(err)
     })
-    this.productosMostrar() 
   }
+
   productosMostrar() {
     
     for (let index = 0; index < 4; index++) {
