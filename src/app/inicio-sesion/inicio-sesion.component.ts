@@ -20,8 +20,8 @@ export class InicioSesionComponent {
     private toastr: ToastrService
   ){
     this.formUser = this.formBuilder.group({
-      correo: ['mraibel12@gmail.com', [Validators.required, Validators.email]],
-      password: ['admin123', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     })
   }
 

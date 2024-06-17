@@ -40,7 +40,9 @@ export class AutenticacionService {
 
   setUsuario(usuario: any, roles: any) {
     localStorage.setItem('usuario', JSON.stringify(usuario))
-    localStorage.setItem('rolesUsuario', JSON.stringify(roles[0].tipo))
+    if(roles[1] != undefined) {
+      localStorage.setItem('rolesUsuario', JSON.stringify(roles[1].tipo))
+    }
   }
 
   getUsuario(): any {
