@@ -40,9 +40,13 @@ export class AutenticacionService {
 
   setUsuario(usuario: any, roles: any) {
     localStorage.setItem('usuario', JSON.stringify(usuario))
-    if(roles[1] != undefined) {
-      localStorage.setItem('rolesUsuario', JSON.stringify(roles[1].tipo))
+    if(roles[1]){
+      localStorage.setItem('rol2', JSON.stringify(roles[1].tipo))
     }
+    if(roles[2]) {
+      localStorage.setItem('rol3', JSON.stringify(roles[2].tipo))
+    }
+    
   }
 
   getUsuario(): any {
@@ -52,7 +56,8 @@ export class AutenticacionService {
   cerrarSesion(): void {
     localStorage.removeItem('token')
     localStorage.removeItem('usuario')
-    localStorage.removeItem('rolesUsuario')
+    localStorage.removeItem('rol2')
+    localStorage.removeItem('rol3')
     this.toastr.success('Sesion cerrada')
     this.router.navigate([''])
   }
