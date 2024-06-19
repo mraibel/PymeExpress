@@ -50,7 +50,7 @@ export class AutenticacionService {
   }
 
   getUsuario(): any {
-    return localStorage.getItem('usuario')
+    return JSON.parse(localStorage.getItem('usuario') || '{}');
   }
 
   cerrarSesion(): void {
