@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,10 @@ export class HeaderComponent {
 
   //Variables para el manejo del carro
   mostrarCarrito: boolean = false
+
+  constructor(
+    public autenticacionServicio: AutenticacionService
+  ){}
   
   // Manejo del carro
   toggleCarrito() : void {

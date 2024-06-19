@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
+import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -7,29 +11,44 @@ import { Component } from '@angular/core';
 })
 export class RegistroComponent {
 
-  nombre: string = ''
-  apellido1: string = ''
-  apellido2: string = ''
-  correo: string = '';
-  password: string = '';
-  confirmarPassword: string = '';
-  telefono: number = 0
-  direccion: string = ''
+  formUser: FormGroup
 
-  enviar(): void {
-    // Aquí iría la lógica de registro, por ejemplo, llamando a un servicio
-    console.log('Nombre:', this.confirmarPassword);
-    console.log('Apellido Paterno:', this.confirmarPassword);
-    console.log('Apellido Materno:', this.confirmarPassword);
-    console.log('Correo Electrónico:', this.correo);
-    console.log('Contraseña:', this.password);
-    console.log('Confirmar Contraseña:', this.confirmarPassword);
-    console.log('Nro. Celular:', this.confirmarPassword);
-    console.log('Dirección:', this.confirmarPassword);
-    
-    if (this.password !== this.confirmarPassword) {
-      alert('Las contraseñas no coinciden');
-      return;
+  constructor(
+    private formBuilder: FormBuilder,
+    private autenticacionServicio: AutenticacionService,
+    private toastr: ToastrService,
+    private router: Router
+  ){
+    this.formUser = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      apellido1: ['', [Validators.required]],
+      apellido2: ['', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      confirmarPassword: ['', [Validators.required]],
+      celular: ['', [Validators.required]],
+      direccion: ['', [Validators.required]],
+    }, { validators: this.validar });
+  }
+
+  validar(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')
+    const confirmarPassword = control.get('confirmarPassword')
+    return password && confirmarPassword && password.value !== confirmarPassword.value ? { password: true } : null;
+  }
+
+  registarUsuario() {
+    if(this.formUser.valid) {
+      const usuario = this.formUser.value
+      console.log(usuario)
+      this.autenticacionServicio.register(usuario).subscribe(() => {
+        this.toastr.success('Registrado con exito!')
+        this.router.navigate(['/inicioSesion'])
+      })
+    } else {
+      this.formUser.markAllAsTouched();
     }
   }
 }
+
+

@@ -6,48 +6,111 @@
             <h3 class="text-center">Registrarse</h3>
           </div>
           <div class="card-body">
-            <form class="d-flex flex-column gap-2">
+            <form [formGroup]="formUser" class="d-flex flex-column gap-2">
+              <!-- Nombre -->
               <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" class="form-control" required [(ngModel)]="nombre">
+                <input type="text" id="nombre" class="form-control" required formControlName="nombre">
+                <!-- Advertencia -->
+                <div 
+                *ngIf="formUser.get('nombre')?.invalid && (formUser.get('nombre')?.touched || formUser.get('nombre')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  Campo obligatorio
+                </div>
               </div>
 
               <div class="d-flex flex-column flex-md-row gap-2 gap-md-4">
+                <!-- Apellido 1 -->
                 <div class="form-group flex-md-fill">
                   <label for="apellido1">Apellido Paterno</label>
-                  <input type="text" id="apellido1" class="form-control" required [(ngModel)]="apellido1">
+                  <input type="text" id="apellido1" class="form-control" required formControlName="apellido1">
                 </div>
+                <!-- Advertencia -->
+                <div 
+                *ngIf="formUser.get('apellido1')?.invalid && (formUser.get('apellido1')?.touched || formUser.get('apellido1')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  Campo obligatorio
+                </div>
+                <!-- Apellido 2 -->
                 <div class="form-group flex-md-fill">
                   <label for="apellido2">Apellido Materno</label>
-                  <input type="text" id="apellido2" class="form-control" required [(ngModel)]="apellido2">
+                  <input type="text" id="apellido2" class="form-control" required formControlName="apellido2">
+                </div>
+                <!-- Advertencia -->
+                <div 
+                *ngIf="formUser.get('apellido2')?.invalid && (formUser.get('apellido2')?.touched || formUser.get('apellido2')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  Campo obligatorio
                 </div>
               </div>
 
+              <!-- Correo -->
               <div class="form-group">
                 <label for="email">Correo Electrónico</label>
-                <input type="email" id="email" class="form-control" required [(ngModel)]="correo">
+                <input type="email" id="email" class="form-control" required formControlName="correo">
+                <div 
+                *ngIf="formUser.get('correo')?.errors && (formUser.get('correo')?.touched || formUser.get('correo')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  El email debe ser válido
+                </div>
               </div>
 
               <div class="d-flex flex-column flex-md-row gap-2 gap-md-4">
                 <div class="form-group flex-md-fill">
+                  <!-- Contraseña -->
                   <label for="contraseña">Contraseña</label>
-                  <input type="password" id="contraseña" class="form-control" required [(ngModel)]="password">
+                  <input type="password" id="contraseña" class="form-control" required formControlName="password">
+                </div>
+                <!-- Advertencia -->
+                <div 
+                *ngIf="formUser.get('password')?.invalid && (formUser.get('password')?.touched || formUser.get('password')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  Campo obligatorio
                 </div>
                 <div class="form-group flex-md-fill">
+                  <!-- Confirmar Contraseña -->
                   <label for="confirmarContraseña">Confirmar Contraseña</label>
-                  <input type="password" id="confirmarContraseña" class="form-control" required required [(ngModel)]="confirmarPassword">
+                  <input type="password" id="confirmarContraseña" class="form-control" required required formControlName="confirmarPassword">
+                  <!-- Advertencia -->
+                  <div 
+                  *ngIf="formUser.getError('password') && (formUser.get('confirmarPassword')?.touched || formUser.get('confirmarPassword')?.dirty)" 
+                  class="alert alert-danger px-1 py-0 m-0"
+                  >
+                    Las contraseñas no coinciden
+                  </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="telefono">Nro. teléfono</label>
-                <input type="number" id="telefono" class="form-control" required [(ngModel)]="telefono">
+                <!-- Teléfono -->
+                <label for="celular">Nro. teléfono</label>
+                <input placeholder="Ej: 912345678" type="number" id="celular" class="form-control" required formControlName="celular">
+                <!-- Advertencia -->
+                <div 
+                *ngIf="formUser.get('celular')?.invalid && (formUser.get('celular')?.touched || formUser.get('celular')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  Campo obligatorio
+                </div>
               </div>
               <div class="form-group">
+                <!-- Dirección -->
                 <label for="direccion">Dirección</label>
-                <input type="text" id="direccion" class="form-control" required [(ngModel)]="direccion">
+                <input type="text" id="direccion" class="form-control" required formControlName="direccion">
+                <!-- Advertencia -->
+                <div 
+                *ngIf="formUser.get('direccion')?.invalid && (formUser.get('direccion')?.touched || formUser.get('direccion')?.dirty)"
+                class="alert alert-danger px-1 py-0 m-0"
+                >
+                  Campo obligatorio
+                </div>
               </div>
-              <button (click)="enviar()" type="submit" class="btn btn-primary btn-block">Registrarse</button>
+              <button type="submit" (click)="registarUsuario()" class="btn btn-primary btn-block">Registrarse</button>
             </form>
           </div>
         </div>
