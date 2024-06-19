@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
+import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
 
 @Component({
   selector: 'app-pagina-inicio',
@@ -9,6 +10,10 @@ import { ProductosService } from '../servicios/productos.service';
 export class PaginaInicioComponent {
    public banner = "../../assets/fondo-banner2.png";
    logo = "../../assets/logo.png";
+
+   constructor(
+    public autenticacionServicio: AutenticacionService
+   ) {}
 
 
 }

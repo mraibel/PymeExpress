@@ -37,6 +37,10 @@ export class ProductosService {
             this.precios.push(producto.precio)
           }
         })
+        this.productosRecomendados.push(res.pop())
+        this.productosRecomendados.push(res.pop())
+        this.productosRecomendados.push(res.pop())
+        this.productosRecomendados.push(res.pop())
         return res
       }
     ))
