@@ -1,5 +1,21 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ProductosService } from '../servicios/productos.service';
+import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
+interface FormData {
+  nombre: string;
+  stock: string;
+  fotos: string;
+  precio: string;
+  carcateristicasPrincipales: string;
+  categoria: string;
+  formasDePago: string;
+  descripcion: string;
+}
 
 @Component({
   selector: 'app-crear-producto',
@@ -18,7 +34,7 @@ export class CrearProductoComponent {
     { title: 'Descripción', content: '' }
   ];
 
-  formData = {
+  formData: FormData = {
     nombre: '',
     stock: '',
     fotos: '',
@@ -29,7 +45,14 @@ export class CrearProductoComponent {
     descripcion: ''
   };
 
-  constructor(private http: HttpClient) {}
+  producto : any;
+
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private serviceProduct: ProductosService,
+    private auth: AutenticacionService
+  ) {}
 
   onFileChange(event: any) {
     const reader = new FileReader();
@@ -49,4 +72,43 @@ export class CrearProductoComponent {
       this.formData.descripcion = response.description;
     });
   }
+
+  crearProducto() {
+    // Validar que todos los campos no estén vacíos
+    const campos: Array<keyof FormData> = ['nombre', 'stock', 'precio', 'carcateristicasPrincipales', 'categoria', 'formasDePago', 'descripcion'];
+    for (const campo of campos) {
+      if (!this.formData[campo]) {
+        alert(`Por favor, complete el campo ${campo}`);
+        return;
+      }
+    }
+
+    this.producto = this.formularProducto();
+    this.serviceProduct.crearProducto(this.producto).pipe(
+      tap((response: any) => {
+        alert('Producto creado exitosamente');
+        this.router.navigate(['/productos-pyme/'+this.producto.id_vendedor]); 
+      }),
+      catchError((error) => {
+        console.error('Error al crear el producto', error);
+        alert('Hubo un error al crear el producto. Por favor, inténtelo de nuevo.');
+        return of(null);
+      })
+    ).subscribe();
+  }
+
+  formularProducto(): any {
+    let producto = {
+      nombre: this.formData.nombre,
+      cantidad: this.formData.stock,
+      descripcion: this.formData.descripcion,
+      precio: this.formData.precio,
+      imagen: null,
+      categoria: this.formData.categoria,
+      id_vendedor: this.auth.getUsuario().id_usuario, 
+      activo: true
+    };
+    return producto;
+  }
+
 }
