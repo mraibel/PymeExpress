@@ -14,27 +14,27 @@
                 <ng-container [ngSwitch]="item.title">
                   <div *ngSwitchCase="'Nombre'">
                     <label for="nombre">Nombre del Producto</label>
-                    <input id="nombre" class="form-control" type="text" [(ngModel)]="formData.nombre">
+                    <input id="nombre" class="form-control" type="text" [(ngModel)]="formData.nombre" required>
                   </div>
                   <div *ngSwitchCase="'Stock'">
                     <label for="stock">Stock</label>
-                    <input id="stock" class="form-control" type="number" [(ngModel)]="formData.stock">
+                    <input id="stock" class="form-control" type="number" [(ngModel)]="formData.stock" required>
                   </div>
                   <div *ngSwitchCase="'Fotos'">
                     <label for="fotos">Fotos</label>
-                    <input id="fotos" class="form-control" type="file" (change)="onFileChange($event)" accept="image/png, image/jpeg">
+                    <input id="fotos" class="form-control" type="file" (change)="onFileChange($event)" accept="image/png, image/jpeg" required>
                   </div>
                   <div *ngSwitchCase="'Precio'">
                     <label for="precio">Precio</label>
-                    <input id="precio" class="form-control" type="number" [(ngModel)]="formData.precio">
+                    <input id="precio" class="form-control" type="number" [(ngModel)]="formData.precio" required>
                   </div>
                   <div *ngSwitchCase="'Caracteristicas Principales'">
                     <label for="caracteristicasPrincipales">Características Principales</label>
-                    <textarea id="caracteristicasPrincipales" class="form-control" type="text" [(ngModel)]="formData.carcateristicasPrincipales"></textarea>
+                    <textarea id="caracteristicasPrincipales" class="form-control" [(ngModel)]="formData.carcateristicasPrincipales" required></textarea>
                   </div>
                   <div *ngSwitchCase="'Categoria'">
                     <label for="categoria">Categoría</label>
-                    <select id="categoria" class="form-control" [(ngModel)]="formData.categoria">
+                    <select id="categoria" class="form-control" [(ngModel)]="formData.categoria" required>
                       <option value="" disabled selected>Selecciona una opción</option>
                       <option value="electronica">Electrónica</option>
                       <option value="juguetes">Juguetes</option>
@@ -43,7 +43,7 @@
                   </div>
                   <div *ngSwitchCase="'Formas de pago'">
                     <label for="formasDePago">Formas de Pago</label>
-                    <select id="formasDePago" class="form-control" [(ngModel)]="formData.formasDePago">
+                    <select id="formasDePago" class="form-control" [(ngModel)]="formData.formasDePago" required>
                       <option value="" disabled selected>Selecciona una opción</option>
                       <option value="tarjeta">Tarjeta de Crédito/Débito</option>
                       <option value="transferencia">Transferencia Bancaria</option>
@@ -52,7 +52,7 @@
                   </div>
                   <div *ngSwitchCase="'Descripción'">
                     <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" class="form-control" [(ngModel)]="formData.descripcion"></textarea>
+                    <textarea id="descripcion" class="form-control" [(ngModel)]="formData.descripcion" required></textarea>
                     <button class="btn btn-primary mt-2" (click)="generarDescripcion()">Generar Descripción</button>
                   </div>
                 </ng-container>
@@ -60,6 +60,7 @@
             </div>
           </div>
         </div>
+        <button class="btn btn-success mt-4" (click)="crearProducto()">Crear Producto</button>
       </div>
     </div>
     <div class="col-md-6">
