@@ -21,7 +21,7 @@
           class="img-thumbnail me-3" 
           style="width: 90px; height: 80px;">
         <div>
-          <h4>{{ producto.nombre }}</h4>
+          <h4><a [routerLink]="['/producto/'+ producto.id_producto]">{{ producto.nombre }}</a></h4>
           <h6 class="mb-1">{{ producto.precio | currency:'CLP':'symbol' }}</h6>
         </div>
       </div>
