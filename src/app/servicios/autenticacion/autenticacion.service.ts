@@ -24,8 +24,7 @@ export class AutenticacionService {
             .pipe(map((data) =>{
               if(data) {
                 this.setToken(data.token)
-                this.setUsuario(data.usuario, data.usuario.roles)
-                
+                this.setUsuario(data.usuario, data.usuario.roles, data.usuario.id_usuario)
               }
             }))
   }
@@ -38,8 +37,9 @@ export class AutenticacionService {
     localStorage.setItem('token', token)
   }
 
-  setUsuario(usuario: any, roles: any) {
+  setUsuario(usuario: any, roles: any, id: any) {
     localStorage.setItem('usuario', JSON.stringify(usuario))
+    localStorage.setItem('idUsuario', JSON.stringify(id))
     if(roles[1]){
       localStorage.setItem('rol2', JSON.stringify(roles[1].tipo))
     }
@@ -58,6 +58,7 @@ export class AutenticacionService {
     localStorage.removeItem('usuario')
     localStorage.removeItem('rol2')
     localStorage.removeItem('rol3')
+    localStorage.removeItem('idUsuario')
     this.toastr.success('Sesion cerrada')
     this.router.navigate([''])
   }

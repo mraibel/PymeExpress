@@ -11,7 +11,7 @@ import { UsuariosService } from './servicios/usuarios.service';
 export class AppComponent implements OnInit{
 
   constructor(
-    private productosServicio: ProductosService,
+    private productosServicio: ProductosService
   ) {
   }
 
