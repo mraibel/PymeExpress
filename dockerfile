@@ -9,7 +9,6 @@ RUN ls -la /app/dist/pymeexpress
 
 # Etapa de Nginx
 FROM nginx:1.24-alpine
-RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/dist/pymeexpress/. /usr/share/nginx/html/
 RUN ls -la /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
