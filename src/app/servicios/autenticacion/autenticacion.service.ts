@@ -23,8 +23,7 @@ export class AutenticacionService {
     return this.http.post<any>(`${this.apiUrl}/autenticacion/iniciar`, user)
             .pipe(map((data) =>{
               if(data) {
-                this.setToken(data.token)
-                this.setUsuario(data.usuario, data.usuario.roles, data.usuario.id_usuario)
+                this.setDatos(data)
               }
             }))
   }
@@ -33,20 +32,51 @@ export class AutenticacionService {
     return this.http.post<any>(`${this.apiUrl}/autenticacion/registrar`, user)
   }
 
+  setDatos(data: any): void {
+    this.setToken(data.token)
+    this.setUsuario(data.usuario)
+    this.setId(data.id)
+    this.setRoles(data.roles)
+    if(data.pyme) {
+      this.setPyme(data.pyme)
+    }
+  }
+
   setToken(token: string): void {
     localStorage.setItem('token', token)
   }
 
-  setUsuario(usuario: any, roles: any, id: any) {
+  setUsuario(usuario: any): void {
     localStorage.setItem('usuario', JSON.stringify(usuario))
-    localStorage.setItem('idUsuario', JSON.stringify(id))
-    if(roles[1]){
-      localStorage.setItem('rol2', JSON.stringify(roles[1].tipo))
+  }
+
+  setId(id: any): void {
+    localStorage.setItem('id_usuario', JSON.stringify(id))
+  }
+
+  getId(): any {
+    return JSON.parse(localStorage.getItem('id_usuario') || '{}')
+  }
+
+  setRoles(roles: any): void {
+    if(roles.includes('vendedor')){
+      localStorage.setItem('vendedor', 'true')
+    } else {
+      localStorage.setItem('vendedor', 'false')
     }
-    if(roles[2]) {
-      localStorage.setItem('rol3', JSON.stringify(roles[2].tipo))
+    if(roles.includes('repartidor')){
+      localStorage.setItem('repartidor', 'true')
+    } else {
+      localStorage.setItem('repartidor', 'false')
     }
-    
+  }
+
+  setPyme(pyme: any) {
+    localStorage.setItem('id_pyme', JSON.stringify(pyme.id_pyme))
+  }
+
+  getPyme(): any {
+    return JSON.parse(localStorage.getItem('id_pyme') || '{}')
   }
 
   getUsuario(): any {
@@ -56,9 +86,10 @@ export class AutenticacionService {
   cerrarSesion(): void {
     localStorage.removeItem('token')
     localStorage.removeItem('usuario')
-    localStorage.removeItem('rol2')
-    localStorage.removeItem('rol3')
-    localStorage.removeItem('idUsuario')
+    localStorage.removeItem('vendedor')
+    localStorage.removeItem('repartidor')
+    localStorage.removeItem('id_usuario')
+    localStorage.removeItem('id_pyme')
     this.toastr.success('Sesion cerrada')
     this.router.navigate([''])
   }

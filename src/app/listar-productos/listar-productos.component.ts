@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
 
 @Component({
   selector: 'app-listar-productos',
@@ -21,16 +22,17 @@ export class ListarProductosComponent implements OnInit {
     private route: ActivatedRoute,
     private productosService: ProductosService,
     private router: Router,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private autenticacionServicio: AutenticacionService
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.autenticacionServicio.getId()
     if (id !== null) {
       this.idUser = +id;
       this.productosService.getProductosVendedor(this.idUser).subscribe(productos => {
         this.productos = productos;
-      });
+      })
     } else {
       console.error('No se pudo obtener el ID del Vendedor');
     }

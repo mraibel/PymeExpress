@@ -2,17 +2,20 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-export const vendedorGuard: CanActivateFn = (route, state) => {
+export const pymeGuard: CanActivateFn = (route, state) => {
   const toastr = inject(ToastrService)
-  const router = inject(Router)
+  const router = inject(Router);
   const usuario = localStorage.getItem('usuario')
   const vendedor = localStorage.getItem('vendedor')
+  const pyme = route.params['id']
+  const id_pyme_usuario = localStorage.getItem('id_pyme')
 
   if(usuario) {
-    if(vendedor == 'true') {
+
+    if((vendedor == 'true') && (pyme == id_pyme_usuario)) {
       return true
     } else {
-      toastr.error('No tienes permiso de vendedor')
+      toastr.error('No puedes acceder a esta página, no tienes los permisos')
       router.navigate([''])
       return false
     }
@@ -21,4 +24,5 @@ export const vendedorGuard: CanActivateFn = (route, state) => {
     router.navigate(['/inicioSesion'])
     return false
   }
+
 }

@@ -28,12 +28,12 @@ export class HeaderComponent {
   }
 
   pymeProductos(): void {
-    const usuario = this.autenticacionServicio.getUsuario();
-    console.log(usuario.id_usuario)
-    if (usuario && usuario.id_usuario) {
-      this.router.navigate(['/productos-pyme/' + usuario.id_usuario]);
+    const id_pyme = this.autenticacionServicio.getPyme();
+    console.log(id_pyme)
+    if (id_pyme) {
+      this.router.navigate(['/productos-pyme/' + id_pyme]);
     } else {
-      console.error('Usuario no encontrado o no tiene ID');
+      console.error('Este usuario no es vendedor');
     }
   }
 
