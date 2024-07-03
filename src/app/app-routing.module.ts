@@ -12,6 +12,8 @@ import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { pymeGuard } from './guards/pyme.guard';
 import { iniciadoGuard } from './guards/iniciado.guard';
 import { vendedorGuard } from './guards/vendedor.guard';
+import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
+import { sesionIniciadaGuard } from './guards/sesion-iniciada.guard';
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
@@ -20,7 +22,8 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent, canActivate:[iniciadoGuard] },
   { path: 'productos-pyme/:id', component: ListarProductosComponent, canActivate:[pymeGuard]},
   { path: 'crear-producto', component: CrearProductoComponent, canActivate:[vendedorGuard] },
-  { path: 'productos', component: GondolaProductosComponent }
+  { path: 'productos', component: GondolaProductosComponent },
+  { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]}
 ];
 
 @NgModule({
