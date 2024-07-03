@@ -15,4 +15,8 @@ export class RolesService {
   getRolesUsuario(id: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/roles/usuario/${id}`).pipe(map((data:any) => data))
   }
+
+  crearVendedor(id: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/roles/crearVendedor`, id);
+  }
 }
