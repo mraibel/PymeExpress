@@ -14,6 +14,9 @@ import { iniciadoGuard } from './guards/iniciado.guard';
 import { vendedorGuard } from './guards/vendedor.guard';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { sesionIniciadaGuard } from './guards/sesion-iniciada.guard';
+import { CrearRepartidorComponent } from './crear-repartidor/crear-repartidor.component';
+import { ListarRepartosComponent } from './listar-repartos/listar-repartos.component';
+import { repartidorGuard } from './guards/repartidor.guard';
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
@@ -21,9 +24,11 @@ const routes: Routes = [
   { path: 'inicioSesion', component: InicioSesionComponent, canActivate:[iniciadoGuard] },
   { path: 'registro', component: RegistroComponent, canActivate:[iniciadoGuard] },
   { path: 'productos-pyme/:id', component: ListarProductosComponent, canActivate:[pymeGuard]},
+  { path: 'repartos/:id', component: ListarRepartosComponent, canActivate:[sesionIniciadaGuard]},
   { path: 'crear-producto', component: CrearProductoComponent, canActivate:[vendedorGuard] },
   { path: 'productos', component: GondolaProductosComponent },
-  { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]}
+  { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]},
+  { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[sesionIniciadaGuard]}
 ];
 
 @NgModule({

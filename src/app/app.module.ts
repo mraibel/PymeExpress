@@ -26,6 +26,8 @@ import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
+import { CrearRepartidorComponent } from './crear-repartidor/crear-repartidor.component';
+import { ListarRepartosComponent } from './listar-repartos/listar-repartos.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
     VisualizarProductoComponent,
     PaginaInicioComponent,
     ProductosRecomendadosComponent,
-    CrearPymeComponent
+    CrearPymeComponent,
+    CrearRepartidorComponent,
+    ListarRepartosComponent
   ],
   imports: [
     BrowserModule,
