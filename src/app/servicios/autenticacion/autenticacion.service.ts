@@ -55,7 +55,7 @@ export class AutenticacionService {
   }
 
   getId(): any {
-    return JSON.parse(localStorage.getItem('id_usuario') || '{}')
+    return localStorage.getItem('id_usuario')
   }
 
   setRoles(roles: any): void {
@@ -69,6 +69,10 @@ export class AutenticacionService {
     } else {
       localStorage.setItem('repartidor', 'false')
     }
+  }
+
+  getVendedor(): any {
+    return localStorage.getItem('vendedor')
   }
 
   setPyme(pyme: any) {

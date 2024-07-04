@@ -13,6 +13,10 @@ export class PymesService {
 
   constructor(private http: HttpClient) { }
 
+  crearPyme(pyme: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/pymes/`, pyme);
+  }
+
   getPymes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/pymes/`).pipe(
       map((res: any) => {
