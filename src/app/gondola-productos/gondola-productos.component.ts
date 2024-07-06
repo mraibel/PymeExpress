@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
+import { CarritoService } from '../servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-gondola-productos',
@@ -17,22 +18,13 @@ export class GondolaProductosComponent implements OnInit {
   ultimaPagina: boolean = false
 
   // Variables para el manejo de ventana del producto
-  mostrarVentana: boolean = false
-  id_producto: number = 0
+  productoModal: any
+  public cantidad: number = 1
 
   constructor(
     public productosServicio: ProductosService,
+    public carritoServicio: CarritoService
   ) {}
-  
-  // Manejo de ventana
-  toggleVentana(id_producto: number) : void {
-    this.mostrarVentana = !this.mostrarVentana
-    this.id_producto = id_producto
-  }
-  
-  receiveData(data: boolean): void {
-    this.mostrarVentana = false
-  }
   
   // Lo primero que carga al renderizar el componente
   ngOnInit(): void {
@@ -71,5 +63,9 @@ export class GondolaProductosComponent implements OnInit {
       }
     }
     this.productosAMostrar = this.productosMostrar()
+  }
+
+  setProductoModal(producto: any): void {
+    this.productoModal = producto
   }
 }
