@@ -12,7 +12,6 @@ import { GondolaProductosComponent } from './gondola-productos/gondola-productos
 import { FooterComponent } from './footer/footer.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ProductoComponent } from './producto/producto.component';
-import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,7 +34,6 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
     FooterComponent,
     CarritoComponent,
     ProductoComponent,
-    AgregarProductoComponent,
     InicioSesionComponent,
     RegistroComponent,
     ImagenProductoPipe,
