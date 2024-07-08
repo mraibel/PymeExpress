@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
-import { Options } from '@angular-slider/ngx-slider';
+import { FormGroup, FormBuilder} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-filtro-productos',
@@ -9,28 +10,24 @@ import { Options } from '@angular-slider/ngx-slider';
 })
 export class FiltroProductosComponent implements OnInit{
 
-  _precios = 0
+  @Output() filtro = new EventEmitter<any>();
+
+  formFiltro: FormGroup
 
   constructor(
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
     public productosServicio: ProductosService
-  ){}
+  ){
+    this.formFiltro = this.formBuilder.group({
+      categorias: [''],
+      pymes: [''],
+      precios: []
+    })
+  }
 
   ngOnInit(): void {
-  
-  }
-
-  set _precio(value: number) {
-    this._precios = value
-    console.log(this._precios.toString().split(',')[0])
-    console.log(this._precios.toString().split(',')[1])
-  }
-  
-  getOpciones(): Options {
-    const opciones: Options = {
-      floor: this.obtenerPrecioMenor(),
-      ceil: this.obtenerPrecioMayor()
-    }
-    return opciones
+    
   }
 
   obtenerPrecioMayor(): number{
@@ -40,4 +37,25 @@ export class FiltroProductosComponent implements OnInit{
   obtenerPrecioMenor(): number {
     return Math.min(...this.productosServicio.precios)
   }
+
+  filtrar(): void {
+    const categorias: any[] = this.formFiltro.get('categorias')?.value
+    const pymes: any[] = this.formFiltro.get('pymes')?.value
+    const precios: any[] = this.formFiltro.get('precios')?.value
+
+    const productos = this.productosServicio.productos.filter((producto:any) => {
+        const categoria = (categorias.length > 0 ? categorias.includes(producto.categoria): true)
+        const pyme = (pymes.length > 0 ? pymes.includes(producto.vendedor.pyme.nombre): true)
+        const precio = precios ? (producto.precio >= precios[0] && producto.precio <= precios[1]): true
+
+        return categoria && pyme && precio
+    })
+
+    this.productosServicio.productosFiltrados = productos
+
+    this.filtro.emit()
+
+    this.toastr.success('Filtro aplicado')
+  }
+
 }

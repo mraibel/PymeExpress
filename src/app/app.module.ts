@@ -26,6 +26,10 @@ import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recome
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SliderModule } from 'primeng/slider';
+import { PaginatorModule } from 'primeng/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +63,10 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
     }),
     ModalModule.forRoot(),
     NgxSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MultiSelectModule,
+    SliderModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

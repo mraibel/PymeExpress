@@ -1,13 +1,19 @@
 <div class="container layout my-4">
   <div class="filtro px-2">
     <h5>Filtros</h5>
-    <div class="scrollable_div">
-      <app-filtro-productos></app-filtro-productos>
-    </div>
+    <app-filtro-productos (filtro)="eventoFiltro($event)" ></app-filtro-productos>
   </div>
 
+  <p-paginator 
+    class="botones" 
+    [rows]="rows" 
+    [totalRecords]="totalRecords" 
+    [rowsPerPageOptions]="[10, 20, 30]" 
+    (onPageChange)="onPageChange($event)"
+  />
+
   <div class="productos lay-productos">
-    @for (producto of productosMostrar(); track producto){
+    @for (producto of productosFiltrados; track producto){
       <div class="col d-flex justify-content-center">
           <div class="producto card w-75 h-100 shadow d-flex align-items-center pt-2">
             <img 
@@ -48,19 +54,9 @@
             </div>
           </div>
         </div>
+      } @empty {
+        <h3>No hay productos para mostrar :c </h3>
       }
-  </div>
-  <div class="btn-group botones">
-    @if(primerPagina && !ultimaPagina) {
-      <button class="btn btn-outline-secondary" disabled>Anterior</button>
-      <button class="btn btn-outline-secondary" (click)="paginaSiguiente()">Siguiente</button>
-    } @else if(ultimaPagina && !primerPagina) {
-      <button class="btn btn-outline-secondary" (click)="paginaAnterior()">Anterior</button>
-      <button class="btn btn-outline-secondary" disabled>Siguiente</button>
-    } @else {
-      <button class="btn btn-outline-secondary" (click)="paginaAnterior()">Anterior</button>
-      <button class="btn btn-outline-secondary" (click)="paginaSiguiente()">Siguiente</button>
-    }
   </div>
 </div>
 
