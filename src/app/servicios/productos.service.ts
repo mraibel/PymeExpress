@@ -39,10 +39,20 @@ export class ProductosService {
             this.precios.push(producto.precio)
           }
         })
-        this.productosRecomendados.push(res.pop())
-        this.productosRecomendados.push(res.pop())
-        this.productosRecomendados.push(res.pop())
-        this.productosRecomendados.push(res.pop())
+        let random: number
+        let guardar: boolean
+        let producto: any
+        for (let i = 0; i < 4; i++) {
+          guardar = false
+          do {
+            random = Math.floor(Math.random() * res.length)
+            producto = res.find((e: any, i: number) => i == random)
+            if(!this.productosRecomendados.includes(producto)) {
+              guardar = true
+              this.productosRecomendados.push(producto)
+            }
+          }while(!guardar)
+        }
         return res
       }
     ))
