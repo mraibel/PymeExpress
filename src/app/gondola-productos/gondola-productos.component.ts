@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
+import { CarritoService } from '../servicios/carrito/carrito.service';
+
 
 @Component({
   selector: 'app-gondola-productos',
@@ -8,68 +10,47 @@ import { ProductosService } from '../servicios/productos.service';
 })
 export class GondolaProductosComponent implements OnInit {
 
-  // Variables para mostrar cierta cantidad de productos
-  productosPorPagina: number = 9
-  paginaActual = 1
-  productosAMostrar: any[] = []
-
-  primerPagina: boolean = true
-  ultimaPagina: boolean = false
+  productosFiltrados: any[] = [];
+  totalRecords: number = 0
+  rows: number = 9;
+  first: number = 0;
 
   // Variables para el manejo de ventana del producto
-  mostrarVentana: boolean = false
-  id_producto: number = 0
+  productoModal: any
+  public cantidad: number = 1
 
   constructor(
     public productosServicio: ProductosService,
+    public carritoServicio: CarritoService
+
   ) {}
-  
-  // Manejo de ventana
-  toggleVentana(id_producto: number) : void {
-    this.mostrarVentana = !this.mostrarVentana
-    this.id_producto = id_producto
-  }
-  
-  receiveData(data: boolean): void {
-    this.mostrarVentana = false
-  }
   
   // Lo primero que carga al renderizar el componente
   ngOnInit(): void {
+    this.productosServicio.getProductos().subscribe((productos: any[]) => {
+      this.productosServicio.productosFiltrados = productos
+      this.totalRecords = productos.length
+      this.updateProductList()
+    })
   }
 
-  //Manejo cantidad de productos por página
-  productosMostrar(): any[] {
-    const inicio = (this.paginaActual - 1) * this.productosPorPagina
-    const fin = inicio + this.productosPorPagina
-    return this.productosServicio.productos.slice(inicio, fin)
+  eventoFiltro(event: any): void {
+    this.first = 0
+    this.updateProductList()
   }
 
-  paginaAnterior() {
-    if(this.paginaActual > 1) {
-      this.paginaActual--
-      if(this.paginaActual == 1) {
-        this.primerPagina = true
-        this.ultimaPagina = false
-      } else if(this.paginaActual > 1) {
-        this.primerPagina = true
-        this.ultimaPagina = true
-      }
-    }
-    this.productosAMostrar = this.productosMostrar()
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.updateProductList();
   }
 
-  paginaSiguiente() {
-    const ultimaPagina = Math.ceil(this.productosServicio.productos.length / this.productosPorPagina)
-    if(this.paginaActual < ultimaPagina) {
-      this.paginaActual++
-      if(this.paginaActual == ultimaPagina) {
-        this.primerPagina = false
-        this.ultimaPagina = true
-      } else if(this.paginaActual > 1) {
-        this.primerPagina = false
-      }
-    }
-    this.productosAMostrar = this.productosMostrar()
+  updateProductList() {
+    this.productosFiltrados = this.productosServicio.productosFiltrados.slice(this.first, this.first + this.rows);
+  }
+
+
+  setProductoModal(producto: any): void {
+    this.productoModal = producto
   }
 }

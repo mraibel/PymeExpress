@@ -18,11 +18,15 @@
         } @else {
            <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              <i-bs name="person-circle"></i-bs> ⋮
+                <i-bs name="person-circle"></i-bs> ⋮
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" (click)="pymeProductos()">Mis Productos</a></li>
-              <li><a class="dropdown-item text-danger" (click)="cerrarSesion()">Cerrar Sesión</a></li>
+                @if(autenticacionServicio.getVendedor() == 'false') {
+                    <li><a class="dropdown-item" [routerLink]="['/crear-pyme']">Vender Productos</a></li>
+                } @else {
+                    <li><a class="dropdown-item" (click)="pymeProductos()">Mis Productos</a></li>
+                }
+                <li><a class="dropdown-item text-danger" (click)="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
           </div>
           

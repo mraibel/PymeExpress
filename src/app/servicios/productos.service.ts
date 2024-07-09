@@ -10,6 +10,7 @@ export class ProductosService {
 
   private apiUrl = environment.apiUrl;
   public productos: any[] = [];
+  public productosFiltrados: any[] = []
   public categorias: any[] = [];
   public pymes: any[] = [];
   public precios: number[] = [];
@@ -22,6 +23,7 @@ export class ProductosService {
     return this.http.get<any[]>(`${this.apiUrl}/productos/`).pipe(
       map((res:any) => {
         this.productos = res
+        this.productosFiltrados = res
         res.forEach((producto: any) => {
           if(!this.categorias.includes(producto.categoria)) {
             this.categorias.push(producto.categoria)
@@ -37,10 +39,20 @@ export class ProductosService {
             this.precios.push(producto.precio)
           }
         })
-        this.productosRecomendados.push(res.pop())
-        this.productosRecomendados.push(res.pop())
-        this.productosRecomendados.push(res.pop())
-        this.productosRecomendados.push(res.pop())
+        let random: number
+        let guardar: boolean
+        let producto: any
+        for (let i = 0; i < 4; i++) {
+          guardar = false
+          do {
+            random = Math.floor(Math.random() * res.length)
+            producto = res.find((e: any, i: number) => i == random)
+            if(!this.productosRecomendados.includes(producto)) {
+              guardar = true
+              this.productosRecomendados.push(producto)
+            }
+          }while(!guardar)
+        }
         return res
       }
     ))

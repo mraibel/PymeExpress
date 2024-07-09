@@ -1,0 +1,41 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">¿Quieres comenzar a vender tus productos?</h1>
+    <h2 class="display-6 text-body-emphasis" >¡Crea tu propia Pyme!</h2>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">PymeExpress da la oportunidad de crear tu propia pyme para poder vender tus productos a través de su marketplace e-commerce. En primera instancia en una red local que luego se expanderá a nivel nacional.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear Pyme</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4" [routerLink]="['/']">Volver al inicio</button>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Ponle nombre a tu Pyme</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formPyme">
+                <div class="form-group mb-3">
+                    <label for="nombre">Nombre</label>
+                    <input formControlName="nombre" type="text" id="nombre" class="form-control" name="nombre" required>
+                    <!-- Advertencia -->
+                    <div 
+                    *ngIf="formPyme.get('nombre')?.invalid && (formPyme.get('nombre')?.touched || formPyme.get('nombre')?.dirty)"
+                    class="alert alert-danger px-1 py-0 m-0"
+                    >
+                    Campo obligatorio
+                    </div>                  
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="crearPyme()">Crear</button>
+        </div>
+      </div>
+    </div>
+</div>

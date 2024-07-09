@@ -12,7 +12,6 @@ import { GondolaProductosComponent } from './gondola-productos/gondola-productos
 import { FooterComponent } from './footer/footer.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { ProductoComponent } from './producto/producto.component';
-import { AgregarProductoComponent } from './agregar-producto/agregar-producto.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,6 +25,11 @@ import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PagoComponent } from './pago/pago.component';
+import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
+
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SliderModule } from 'primeng/slider';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,6 @@ import { PagoComponent } from './pago/pago.component';
     FooterComponent,
     CarritoComponent,
     ProductoComponent,
-    AgregarProductoComponent,
     InicioSesionComponent,
     RegistroComponent,
     ImagenProductoPipe,
@@ -45,7 +48,8 @@ import { PagoComponent } from './pago/pago.component';
     VisualizarProductoComponent,
     PaginaInicioComponent,
     ProductosRecomendadosComponent,
-    PagoComponent
+    PagoComponent,
+    CrearPymeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,10 @@ import { PagoComponent } from './pago/pago.component';
     }),
     ModalModule.forRoot(),
     NgxSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MultiSelectModule,
+    SliderModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

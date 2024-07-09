@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarProductoComponent } from './agregar-producto.component';
+import { CrearPymeComponent } from './crear-pyme.component';
 
-describe('AgregarProductoComponent', () => {
-  let component: AgregarProductoComponent;
-  let fixture: ComponentFixture<AgregarProductoComponent>;
+describe('CrearPymeComponent', () => {
+  let component: CrearPymeComponent;
+  let fixture: ComponentFixture<CrearPymeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AgregarProductoComponent]
+      declarations: [CrearPymeComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AgregarProductoComponent);
+    fixture = TestBed.createComponent(CrearPymeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
