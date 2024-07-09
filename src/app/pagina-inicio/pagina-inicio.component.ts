@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../servicios/productos.service';
 import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
 
@@ -7,13 +7,12 @@ import { AutenticacionService } from '../servicios/autenticacion/autenticacion.s
   templateUrl: './pagina-inicio.component.html',
   styleUrl: './pagina-inicio.component.css'
 })
-export class PaginaInicioComponent {
-   public banner = "../../assets/fondo-banner2.png";
-   logo = "../../assets/logo.png";
+export class PaginaInicioComponent{
+  public banner = "../../assets/fondo-banner2.png";
+  logo = "../../assets/logo.png";
 
-   constructor(
-    public autenticacionServicio: AutenticacionService
-   ) {}
-
-
+  constructor(
+    public productosServicio: ProductosService,
+    public autenticacionServicio: AutenticacionService,
+  ) {}
 }
