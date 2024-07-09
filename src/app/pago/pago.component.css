@@ -1,0 +1,25 @@
+.container-fluid {
+    background-color: #f8f9fa;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-header {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .table {
+    margin-bottom: 0;
+  }
+  
+  .table img {
+    max-height: 100px;
+  }
+  
+  .btn-success {
+    width: 150px;
+  }
+  

@@ -24,6 +24,7 @@ import { VisualizarProductoComponent } from './visualizar-producto/visualizar-pr
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { PagoComponent } from './pago/pago.component';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 
 import { MultiSelectModule } from 'primeng/multiselect';
@@ -47,6 +48,7 @@ import { PaginatorModule } from 'primeng/paginator';
     VisualizarProductoComponent,
     PaginaInicioComponent,
     ProductosRecomendadosComponent,
+    PagoComponent,
     CrearPymeComponent
   ],
   imports: [

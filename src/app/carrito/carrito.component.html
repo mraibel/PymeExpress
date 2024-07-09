@@ -52,7 +52,7 @@
             </div>
             <div>
               <button type="button" class="btn btn-danger" (click)="carritoServicio.limpiarCarrito()">Vaciar Carrito</button>
-              <button type="button" class="btn btn-success">Ir a pagar</button>
+              <button [routerLink]="['/pago']" type="button" class="btn btn-success" (click)="cerrarCarrito()">Ir a pagar</button>
             </div>
           </div>
         </tfoot>
