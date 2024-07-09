@@ -25,6 +25,7 @@ import { VisualizarProductoComponent } from './visualizar-producto/visualizar-pr
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ProductosRecomendadosComponent } from './pagina-inicio/productos-recomendados/productos-recomendados.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { PagoComponent } from './pago/pago.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     CrearProductoComponent,
     VisualizarProductoComponent,
     PaginaInicioComponent,
-    ProductosRecomendadosComponent
+    ProductosRecomendadosComponent,
+    PagoComponent
   ],
   imports: [
     BrowserModule,

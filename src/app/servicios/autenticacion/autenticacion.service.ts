@@ -37,6 +37,14 @@ export class AutenticacionService {
     localStorage.setItem('token', token)
   }
 
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  estaAutenticado(): boolean {
+    return this.getToken() !== null;
+  }
+
   setUsuario(usuario: any, roles: any, id: any) {
     localStorage.setItem('usuario', JSON.stringify(usuario))
     localStorage.setItem('idUsuario', JSON.stringify(id))
@@ -62,5 +70,4 @@ export class AutenticacionService {
     this.toastr.success('Sesion cerrada')
     this.router.navigate([''])
   }
-
 }
