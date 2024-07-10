@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AutenticacionService } from '../servicios/autenticacion/autenticacion.service';
 import { Router } from '@angular/router';
+import { PedidosService } from '../servicios/pedidos.service';
 
 
 
@@ -16,7 +17,8 @@ export class HeaderComponent {
 
   constructor(
     public autenticacionServicio: AutenticacionService,
-    private router: Router 
+    private router: Router,
+    private pedidosServicio: PedidosService
   ){}
 
   // Manejo del carro
@@ -34,6 +36,16 @@ export class HeaderComponent {
       this.router.navigate(['/productos-pyme/' + id_pyme]);
     } else {
       console.error('Este usuario no es vendedor');
+    }
+  }
+
+  historialVentas(): void {
+    const id_vendedor = this.autenticacionServicio.getId()
+    if(id_vendedor) {
+      this.pedidosServicio.getPedidosVendedor(id_vendedor).subscribe((data: any) => {
+        this.pedidosServicio.pedidosVendedor = data
+        this.router.navigate(['/historial-ventas/' + id_vendedor]);
+      })
     }
   }
 
