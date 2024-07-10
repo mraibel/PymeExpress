@@ -1,31 +1,24 @@
-<div class="d-flex flex-column gap-2">
-    <div>
-      <label for="">Buscar:</label>
-      <input type="text">
-    </div>
-    
-    <div class="list-group">
-        <h6>Categoría</h6>
-        @for(categoria of productosServicio.categorias; track categoria) {
-        <button class="list-group-item list-group-item-action">
-          {{categoria}}
-        </button>
-      }
-    </div>
-
-    <div class="list-group">
-        <h6>Pyme</h6>
-        @for(pyme of productosServicio.pymes; track pyme) {
-          <button class="list-group-item list-group-item-action">
-            {{pyme}}
-          </button>
-        }
-    </div>
-
-    <div>
-        <h6>Rango de precios</h6>
-        <ngx-slider [(ngModel)]="_precio" [options]="getOpciones()" [value]="obtenerPrecioMenor()" [highValue]="obtenerPrecioMayor()"></ngx-slider>
-        <p>{{_precio}}</p>
-    </div>
-
+<div class="d-flex flex-column row mb-3">
+  <form [formGroup]="formFiltro" class="d-flex flex-column gap-3 col-12 col-md-6 col-xl-12">
+    <p-multiSelect 
+      [options]="productosServicio.categorias"
+      formControlName="categorias"
+      placeholder="Categorias"
+      
+    />
+    <p-multiSelect 
+      [options]="productosServicio.pymes"
+      formControlName="pymes"
+      placeholder="Pymes"
+    />
+    <p-slider 
+      formControlName="precios" 
+      [range]="true" 
+      styleClass="w-14rem"
+      [min]='obtenerPrecioMenor()'
+      [max]='obtenerPrecioMayor()'
+    />
+    <button type="submit" (click)="filtrar()" class="btn btn-primary btn-block">Aplicar Filtro</button>
+  </form>
+  
 </div>

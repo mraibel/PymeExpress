@@ -1,13 +1,19 @@
 <div class="container layout my-4">
   <div class="filtro px-2">
     <h5>Filtros</h5>
-    <div class="scrollable_div">
-      <app-filtro-productos></app-filtro-productos>
-    </div>
+    <app-filtro-productos (filtro)="eventoFiltro($event)" ></app-filtro-productos>
   </div>
 
+  <p-paginator 
+    class="botones" 
+    [rows]="rows" 
+    [totalRecords]="totalRecords" 
+    [rowsPerPageOptions]="[10, 20, 30]" 
+    (onPageChange)="onPageChange($event)"
+  />
+
   <div class="productos lay-productos">
-    @for (producto of productosMostrar(); track producto){
+    @for (producto of productosFiltrados; track producto){
       <div class="col d-flex justify-content-center">
           <div class="producto card w-75 h-100 shadow d-flex align-items-center pt-2">
             <img 
@@ -33,7 +39,9 @@
                   <button 
                   type="button" 
                   class="btn btn-sm btn-outline-secondary"
-                  (click)="toggleVentana(producto.id_producto)"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#staticBackdrop"
+                  (click)="setProductoModal(producto)"
                   >
                   Agregar al carrito
                 </button>
@@ -46,22 +54,43 @@
             </div>
           </div>
         </div>
-      }
-      @if(mostrarVentana) {
-        <app-agregar-producto (sendData)="receiveData($event)" [id]="id_producto"></app-agregar-producto>
+      } @empty {
+        <h3>No hay productos para mostrar :c </h3>
       }
   </div>
-  <div class="btn-group botones">
-    @if(primerPagina && !ultimaPagina) {
-      <button class="btn btn-outline-secondary" disabled>Anterior</button>
-      <button class="btn btn-outline-secondary" (click)="paginaSiguiente()">Siguiente</button>
-    } @else if(ultimaPagina && !primerPagina) {
-      <button class="btn btn-outline-secondary" (click)="paginaAnterior()">Anterior</button>
-      <button class="btn btn-outline-secondary" disabled>Siguiente</button>
-    } @else {
-      <button class="btn btn-outline-secondary" (click)="paginaAnterior()">Anterior</button>
-      <button class="btn btn-outline-secondary" (click)="paginaSiguiente()">Siguiente</button>
-    }
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Vista previa producto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3">
+          <img 
+          [src]="productoModal?.imagen | imagenProducto:'../../assets/box.png'"
+          class="img-fluid"
+          >
+          <!-- Nombre y precio producto -->
+          <div>
+              <h4>{{productoModal?.nombre}}</h4>
+              <p>{{productoModal?.precio | currency:'CLP'}}</p> 
+          </div>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+          <div class="mb-3">
+              <label for="quantity" class="form-label">Cantidad</label>
+              <input type="number" id="quantity" class="form-control border-dark" min="1" max={{productoModal?.cantidad}} [(ngModel)]="cantidad"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button class="btn btn-primary" (click)="carritoServicio.agregarProducto(productoModal, cantidad)">Agregar al Carrito</button>
+      </div>
+    </div>
   </div>
 </div>
 

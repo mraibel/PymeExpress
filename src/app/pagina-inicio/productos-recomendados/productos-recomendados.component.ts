@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductosService } from '../../servicios/productos.service';
 
 @Component({
@@ -6,10 +6,9 @@ import { ProductosService } from '../../servicios/productos.service';
   templateUrl: './productos-recomendados.component.html',
   styleUrl: './productos-recomendados.component.css'
 })
-export class ProductosRecomendadosComponent {
+export class ProductosRecomendadosComponent{
 
   constructor(
-  public productosServicio: ProductosService,
+    public productoServicio: ProductosService
   ) {}
-
 }
