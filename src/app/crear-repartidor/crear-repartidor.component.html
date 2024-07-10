@@ -11,31 +11,47 @@
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">a</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="formRepartidor">
-                <div class="form-group mb-3">
-                    <label for="nombre">Nombre</label>
-                    <input formControlName="nombre" type="text" id="nombre" class="form-control" name="nombre" required>
-                    <!-- Advertencia -->
-                    <div 
-                    *ngIf="formRepartidor.get('nombre')?.invalid && (formRepartidor.get('nombre')?.touched || formRepartidor.get('nombre')?.dirty)"
-                    class="alert alert-danger px-1 py-0 m-0"
-                    >
-                    Campo obligatorio
-                    </div>                  
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="crearRepartidor()">Iniciar como Repartidor</button>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Repartidor</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="formRepartidor">
+              <div class="form-group mb-3">
+                  <label for="nombre">Nombre</label>
+                  <input formControlName="nombre" type="text" id="nombre" class="form-control" name="nombre" required>
+                  <div 
+                  *ngIf="formRepartidor.get('nombre')?.invalid && (formRepartidor.get('nombre')?.touched || formRepartidor.get('nombre')?.dirty)"
+                  class="alert alert-danger px-1 py-0 m-0">
+                  Campo obligatorio
+                  </div>                  
+              </div>
+              <div class="form-group mb-3">
+                  <label for="correo">Correo Electrónico</label>
+                  <input formControlName="correo" type="email" id="correo" class="form-control" name="correo" required>
+                  <div 
+                  *ngIf="formRepartidor.get('correo')?.invalid && (formRepartidor.get('correo')?.touched || formRepartidor.get('correo')?.dirty)"
+                  class="alert alert-danger px-1 py-0 m-0">
+                  Correo electrónico inválido
+                  </div>                  
+              </div>
+              <div class="form-group mb-3">
+                  <label for="rut">RUT</label>
+                  <input formControlName="rut" type="text" id="rut" class="form-control" name="rut" required>
+                  <div 
+                  *ngIf="formRepartidor.get('rut')?.invalid && (formRepartidor.get('rut')?.touched || formRepartidor.get('rut')?.dirty)"
+                  class="alert alert-danger px-1 py-0 m-0">
+                  RUT inválido
+                  </div>                  
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="crearRepartidor()">Iniciar como Repartidor</button>
       </div>
     </div>
+  </div>
 </div>

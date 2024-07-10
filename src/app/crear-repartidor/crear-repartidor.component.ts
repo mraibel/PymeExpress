@@ -26,6 +26,8 @@ export class CrearRepartidorComponent {
   ){
     this.formRepartidor = this.formBuilder.group({
       nombre: ['', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]],
+      rut: ['', [Validators.required, this.validarRut]],
       id_repartidor: [this.autenticacionServicio.getId()]
     })
   }
@@ -37,11 +39,20 @@ export class CrearRepartidorComponent {
         localStorage.setItem('repartidor', 'true')
         this.toastr.success('Felicidades, ahora eres Repartidor')
         this.router.navigate(['/repartos/'+ this.autenticacionServicio.getId()])
-        
       })
     } else {
       this.formRepartidor.markAllAsTouched();
     }
   }
 
+  // Validador personalizado para RUT chileno
+  validarRut(control: any) {
+    const rut = control.value;
+    // Implementa aquí la lógica de validación del RUT chileno
+    // Este es un ejemplo básico, deberías implementar la validación completa
+    if (!/^[0-9]{7,8}-[0-9Kk]{1}$/.test(rut)) {
+      return { rutInvalido: true };
+    }
+    return null;
+  }
 }

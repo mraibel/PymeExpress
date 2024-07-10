@@ -80,6 +80,8 @@ export class AutenticacionService {
     } else {
       localStorage.setItem('repartidor', 'false')
     }
+    
+    console.log(localStorage.getItem('repartidor'))
   }
 
   getVendedor(): any {
