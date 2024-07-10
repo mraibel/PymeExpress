@@ -13,6 +13,7 @@ export class FiltroProductosComponent implements OnInit{
   @Output() filtro = new EventEmitter<any>();
 
   formFiltro: FormGroup
+  preciosneto: number[] = [0,0]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +38,8 @@ export class FiltroProductosComponent implements OnInit{
   obtenerPrecioMenor(): number {
     return Math.min(...this.productosServicio.precios)
   }
+
+
 
   filtrar(): void {
     const categorias: any[] = this.formFiltro.get('categorias')?.value

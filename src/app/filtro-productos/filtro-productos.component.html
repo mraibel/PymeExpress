@@ -15,9 +15,13 @@
       formControlName="precios" 
       [range]="true" 
       styleClass="w-14rem"
-      [min]='obtenerPrecioMenor()'
+      min='0'
       [max]='obtenerPrecioMayor()'
+      [(ngModel)]="preciosneto"
     />
+    <p>
+      <span>Precio: {{preciosneto[0]}} - {{preciosneto[1]}}</span>
+    </p>
     <button type="submit" (click)="filtrar()" class="btn btn-primary btn-block">Aplicar Filtro</button>
   </form>
   
