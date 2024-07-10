@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 export class PedidosService {
 
   private apiUrl = environment.apiUrl;
+  public pedidosVendedor: any[] = []
 
   constructor(
     private http: HttpClient
@@ -32,6 +33,10 @@ export class PedidosService {
   // ACTUALIZAR PEDIDO
   actualizarPedido(id: number, datos: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/pedidos/${id}`, datos)
+  }
+
+  getPedidosVendedor(id: number): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/pedidos/vendedor/${id}`).pipe(map((res:any) => res))
   }
 
 }
