@@ -58,27 +58,29 @@
           </div>
         </div>
   
-        <!-- Aplicar Cupón -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5>Aplicar Cupón</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="cupon">Código de Cupón</label>
-                <input type="text" class="form-control" id="cupon">
-                <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <tfoot class="d-flex justify-content-end">
-            <tr>
-              <td colspan="4" class="text-right"><strong>Total a pagar:</strong></td>
-              <td class="text-center"><strong>{{carritoServicio.obtenerTotal() | currency:'CLP'}}</strong></td>
-            </tr>
-          </tfoot>
+<!-- pago.component.html -->
+<div class="card mb-4">
+  <div class="card-header">
+    <h5>Aplicar Cupón</h5>
+  </div>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label for="cupon">Código de Cupón</label>
+        <input type="text" class="form-control" id="cupon" [(ngModel)]="cupon" name="cupon">
+        <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
+      </div>
+    </form>
+  </div>
+</div>
+<tfoot class="d-flex justify-content-end">
+  <tr>
+    <td colspan="4" class="text-right"><strong>Total a pagar:</strong></td>
+    <td class="text-center"><strong>{{ obtenerTotal() | currency:'CLP' }}</strong></td>
+  </tr>
+</tfoot>
+
+
         <!-- Botones Finales -->
         <div class="d-flex justify-content-between mt-4">
           <button type="button" class="btn btn-danger" (click)="carritoServicio.limpiarCarrito()">Vaciar Carrito</button>

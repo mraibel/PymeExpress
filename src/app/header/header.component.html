@@ -13,6 +13,7 @@
     <div class="d-flex flex-column flex-lg-row justify-content-center gap-3 gap-lg-4 align-items-center ">
         <a [routerLink]="['/']" class="text-white nav-link">Inicio</a>
         <a [routerLink]="['/productos']" class="text-white nav-link">Ver Productos</a>
+        <a [routerLink]="['/historial-compra']" class="text-white nav-link">Historial compra</a>
         @if (autenticacionServicio.getUsuario().id_usuario == null) {
             <a [routerLink]="['/inicioSesion']" class="text-white nav-link">Iniciar Sesión</a>
         } @else {

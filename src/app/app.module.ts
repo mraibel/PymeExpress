@@ -30,6 +30,8 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SliderModule } from 'primeng/slider';
 import { PaginatorModule } from 'primeng/paginator';
+import { PasswordModule } from 'primeng/password';
+import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { PaginatorModule } from 'primeng/paginator';
     PaginaInicioComponent,
     ProductosRecomendadosComponent,
     PagoComponent,
-    CrearPymeComponent
+    CrearPymeComponent,
+    HistorialCompraComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { PaginatorModule } from 'primeng/paginator';
     ReactiveFormsModule,
     MultiSelectModule,
     SliderModule,
-    PaginatorModule
+    PaginatorModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]

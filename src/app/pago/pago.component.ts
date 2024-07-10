@@ -11,22 +11,32 @@ import { AutenticacionService } from '../servicios/autenticacion/autenticacion.s
 })
 export class PagoComponent {
 
+  cupon: string = '';
+
   constructor(
     public carritoServicio: CarritoService,
     private router: Router,
     private authService: AutenticacionService
+    
   ) { }
 
   procederPago() {
     // Implementar la lógica para proceder con el pago
    
   }
-
-  aplicarCupon() {
-    // Implementar la lógica para aplicar el cupón
-  }
-
   estaAutenticado(): boolean {
     return this.authService.getToken() !== null; 
+  }
+
+  aplicarCupon(): void {
+    this.carritoServicio.aplicarDescuento(this.cupon);
+  }
+
+  obtenerTotal(): number {
+    return this.carritoServicio.obtenerTotal();
+  }
+
+  obtenerProductos(): any[] {
+    return this.carritoServicio.obtenerProductos();
   }
 }
