@@ -29,6 +29,11 @@
                 } @else {
                     <li><a class="dropdown-item" (click)="pymeProductos()">Mis Productos</a></li>
                 }
+                @if(autenticacionServicio.getRepartidor() == 'false') {
+                    <li><a class="dropdown-item" [routerLink]="['/crear-repartidor']">Empezar a Repartir</a></li>
+                } @else {
+                    <li><a class="dropdown-item" (click)="repartidorOrdenes()">Mis Repartos</a></li>
+                }
                 <li><a class="dropdown-item text-danger" (click)="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
           </div>

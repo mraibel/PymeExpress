@@ -2,94 +2,36 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
         <h3 class="text-center mb-4">Resumen de la Compra</h3>
-  
-        <!-- Formulario de Datos del Cliente -->
-        <div class="card mb-4" *ngIf="!estaAutenticado()">
-          <div class="card-header">
-            <h5>Datos del Cliente</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="nombre">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombre" required>
-              </div>
-              <div class="form-group">
-                <label for="direccion">Dirección de Envío</label>
-                <input type="text" class="form-control" id="direccion" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" required>
-              </div>
-              <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" class="form-control" id="telefono" required>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- Método de Pago -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5>Método de Pago</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="pago" id="pago1" value="tarjeta" checked>
-                <label class="form-check-label" for="pago1">
-                  Tarjeta de Crédito/Débito
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="pago" id="pago2" value="paypal">
-                <label class="form-check-label" for="pago2">
-                  PayPal
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="pago" id="pago3" value="paypal">
-                <label class="form-check-label" for="pago3">
-                  Efectivo
-                </label>
-              </div>
-            </form>
-          </div>
-        </div>
-  
-<!-- pago.component.html -->
-<div class="card mb-4">
-  <div class="card-header">
-    <h5>Aplicar Cupón</h5>
-  </div>
-  <div class="card-body">
-    <form>
-      <div class="form-group">
-        <label for="cupon">Código de Cupón</label>
-        <input type="text" class="form-control" id="cupon" [(ngModel)]="cupon" name="cupon">
-        <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
+    <!-- pago.component.html -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5>Aplicar Cupón</h5>
       </div>
-    </form>
-  </div>
-</div>
-<tfoot class="d-flex justify-content-end">
-  <tr>
-    <td colspan="4" class="text-right"><strong>Total a pagar:</strong></td>
-    <td class="text-center"><strong>{{ obtenerTotal() | currency:'CLP' }}</strong></td>
-  </tr>
-</tfoot>
-
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="cupon">Código de Cupón</label>
+            <input type="text" class="form-control" id="cupon" [(ngModel)]="cupon" name="cupon">
+            <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <tfoot class="d-flex justify-content-end">
+      <tr>
+        <td colspan="4" class="text-right"><strong>Total a pagar:</strong></td>
+        <td class="text-center"><strong>{{ obtenerTotal() | currency:'CLP' }}</strong></td>
+      </tr>
+    </tfoot>
 
         <!-- Botones Finales -->
-        <div class="d-flex justify-content-between mt-4">
-          <button type="button" class="btn btn-danger" (click)="carritoServicio.limpiarCarrito()">Vaciar Carrito</button>
-          <button type="button" class="btn btn-success" (click)="procederPago()">Pagar</button>
+        <div class=" mt-4">
+          <div>
+            <div id="paymentBrick_container"></div>
+          </div>
         </div>
       </div>
-      
     </div>
-    
-  </div>
+</div>
   
   
