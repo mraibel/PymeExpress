@@ -14,7 +14,7 @@
         <a [routerLink]="['/']" class="text-white nav-link">Inicio</a>
         <a [routerLink]="['/productos']" class="text-white nav-link">Ver Productos</a>
         <div *ngIf="estaAutenticado()">
-            <a [routerLink]="['/historial-compra']" class="text-white nav-link">Historial compra</a>
+            
         </div>
         @if (autenticacionServicio.getUsuario().id_usuario == null) {
             <a [routerLink]="['/inicioSesion']" class="text-white nav-link">Iniciar Sesión</a>
@@ -24,10 +24,12 @@
                 <i-bs name="person-circle"></i-bs> ⋮
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a [routerLink]="['/historial-compra']" class="dropdown-item">Historial compra</a></li>
                 @if(autenticacionServicio.getVendedor() == 'false') {
                     <li><a class="dropdown-item" [routerLink]="['/crear-pyme']">Vender Productos</a></li>
                 } @else {
                     <li><a class="dropdown-item" (click)="pymeProductos()">Mis Productos</a></li>
+                    <li><a class="dropdown-item" (click)="historialVentas()">Historial ventas</a></li>
                 }
                 @if(autenticacionServicio.getRepartidor() == 'false') {
                     <li><a class="dropdown-item" [routerLink]="['/crear-repartidor']">Empezar a Repartir</a></li>

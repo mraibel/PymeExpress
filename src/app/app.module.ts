@@ -29,6 +29,7 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { CrearRepartidorComponent } from './crear-repartidor/crear-repartidor.component';
 import { ListarRepartosComponent } from './listar-repartos/listar-repartos.component';
 import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
+import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
 
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SliderModule } from 'primeng/slider';
@@ -60,7 +61,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     BuscarOrdenComponent,
     PagoComponent,
     CrearPymeComponent,
-    HistorialCompraComponent
+    HistorialCompraComponent,
+    HistorialVentasComponent
   ],
   imports: [
     BrowserModule,

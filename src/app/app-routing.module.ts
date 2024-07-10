@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+//Componentes
 import { GondolaProductosComponent } from './gondola-productos/gondola-productos.component';
 import { ProductoComponent } from './producto/producto.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
@@ -12,6 +14,8 @@ import { ListarRepartosComponent } from './listar-repartos/listar-repartos.compo
 import { PagoComponent } from './pago/pago.component';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
+import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
+import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
 
 // Guards
 import { pymeGuard } from './guards/pyme.guard';
@@ -19,8 +23,8 @@ import { iniciadoGuard } from './guards/iniciado.guard';
 import { vendedorGuard } from './guards/vendedor.guard';
 import { sesionIniciadaGuard } from './guards/sesion-iniciada.guard';
 import { repartidorGuard } from './guards/repartidor.guard';
-import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
 import { esVendedorGuard } from './guards/es-vendedor.guard';
+
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
@@ -35,7 +39,8 @@ const routes: Routes = [
   { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]},
   { path: 'historial-compra', component: HistorialCompraComponent},
   { path: 'buscar-orden', component: BuscarOrdenComponent, canActivate:[repartidorGuard]},
-  { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]}
+  { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]},
+  { path: 'historial-ventas/:id', component:HistorialVentasComponent }
 ];
 
 @NgModule({
