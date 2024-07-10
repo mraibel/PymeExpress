@@ -19,6 +19,7 @@ import { vendedorGuard } from './guards/vendedor.guard';
 import { sesionIniciadaGuard } from './guards/sesion-iniciada.guard';
 import { repartidorGuard } from './guards/repartidor.guard';
 import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
+import { esVendedorGuard } from './guards/es-vendedor.guard';
 
 const routes: Routes = [
   { path: '', component: PaginaInicioComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'productos', component: GondolaProductosComponent },
   { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]},
   { path: 'buscar-orden', component: BuscarOrdenComponent, canActivate:[repartidorGuard]},
-  { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[sesionIniciadaGuard]}
+  { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]}
 ];
 
 @NgModule({

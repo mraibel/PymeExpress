@@ -12,7 +12,7 @@ export const repartidorGuard: CanActivateFn = (route, state) => {
     return true
   } else {
     toastr.error('No puedes acceder a esta página, debes iniciar sesión')
-    router.navigate(['/registro'])
+    router.navigate(['/'])
     return false 
   }
 
