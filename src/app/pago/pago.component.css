@@ -22,4 +22,10 @@
   .btn-success {
     width: 150px;
   }
+
+.scrollable_div {
+  max-height: 350px; /* ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
   

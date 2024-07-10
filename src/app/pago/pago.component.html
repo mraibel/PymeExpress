@@ -10,6 +10,10 @@
       <div class="card-body">
         <form>
           <div class="form-group">
+            <label for="especificaiones">Especificaciones <span class='small'>(Opcionales)</span></label>
+            <input type="text" class="form-control" id="especificaiones" [(ngModel)]="especificaiones" name="especificaiones">
+          </div>
+          <div class="form-group">
             <label for="cupon">Código de Cupón</label>
             <input type="text" class="form-control" id="cupon" [(ngModel)]="cupon" name="cupon">
             <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
@@ -33,5 +37,39 @@
       </div>
     </div>
 </div>
+
+<!-- Ventana Modal pago exitoso -->
+<ng-template #pagoExitoso>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Orden número #{{orden.id_pedido}} cancelada con éxito</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pb-0 pt-2 scrollable_div">
+          <div class="d-flex flex-column h-50">
+            @for(producto of productosOrden; track producto) {
+              <div class="card d-flex flex-row justify-content-between align-items-center mb-2">
+                <div class="w-25 d-flex align-items-center justify-content-center">
+                  <img 
+                  [src]="producto.imagen | imagenProducto:'../../assets/box.png'"
+                  width="50"
+                  >
+                </div>
+                <div class="w-50">
+                  <h5>{{producto[0]?.nombre}}</h5>
+                </div>
+                <div class="w-25 d-flex align-items-center justify-content-center">
+                  <h6>{{producto[1]}}</h6>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cerrarVentanaModal('/historial-compra')">Ver mis compras</button>
+          <button type="button" class="btn btn-primary" (click)="cerrarVentanaModal('')">Aceptar</button>
+        </div>
+      </div>
+</ng-template>
   
   
