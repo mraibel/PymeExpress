@@ -69,6 +69,12 @@ export class CarritoService {
     this.toastr.info('Carrito vaciado con éxito')
   }
 
+  limpiarCarroPostCompra(): void {
+    this.productos = []
+    this.descuento = 0;
+    this.actualizarStorage()
+  }
+
 
   eliminarProducto(producto: any): void {
     let encontrado = false
