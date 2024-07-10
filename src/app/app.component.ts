@@ -16,7 +16,6 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.productosServicio.getProductos().subscribe((data: any[])=>{
       console.log('Datos de productos cargados')
-
     },
     err =>{
       console.log(err)

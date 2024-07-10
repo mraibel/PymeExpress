@@ -29,35 +29,6 @@
             </form>
           </div>
         </div>
-        <!-- Método de Pago -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5>Método de Pago</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="pago" id="pago1" value="tarjeta" checked>
-                <label class="form-check-label" for="pago1">
-                  Tarjeta de Crédito/Débito
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="pago" id="pago2" value="paypal">
-                <label class="form-check-label" for="pago2">
-                  PayPal
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="pago" id="pago3" value="paypal">
-                <label class="form-check-label" for="pago3">
-                  Efectivo
-                </label>
-              </div>
-            </form>
-          </div>
-        </div>
-  
         <!-- Aplicar Cupón -->
         <div class="card mb-4">
           <div class="card-header">
@@ -80,14 +51,13 @@
             </tr>
           </tfoot>
         <!-- Botones Finales -->
-        <div class="d-flex justify-content-between mt-4">
-          <button type="button" class="btn btn-danger" (click)="carritoServicio.limpiarCarrito()">Vaciar Carrito</button>
-          <button type="button" class="btn btn-success" (click)="procederPago()">Pagar</button>
+        <div class=" mt-4">
+          <div>
+            <div id="paymentBrick_container"></div>
+          </div>
         </div>
       </div>
-      
     </div>
-    
-  </div>
+</div>
   
   

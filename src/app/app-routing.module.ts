@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'producto/:id_producto', component: ProductoComponent },
   { path: 'inicioSesion', component: InicioSesionComponent, canActivate:[iniciadoGuard] },
   { path: 'registro', component: RegistroComponent, canActivate:[iniciadoGuard] },
-  { path: 'pago', component: PagoComponent }
+  { path: 'pago', component: PagoComponent },
   { path: 'productos-pyme/:id', component: ListarProductosComponent, canActivate:[pymeGuard]},
   { path: 'crear-producto', component: CrearProductoComponent, canActivate:[vendedorGuard] },
   { path: 'productos', component: GondolaProductosComponent },

@@ -30,6 +30,7 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SliderModule } from 'primeng/slider';
 import { PaginatorModule } from 'primeng/paginator';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { PaginatorModule } from 'primeng/paginator';
     ReactiveFormsModule,
     MultiSelectModule,
     SliderModule,
-    PaginatorModule
+    PaginatorModule,
+    RadioButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
