@@ -86,6 +86,10 @@ export class AutenticacionService {
     return localStorage.getItem('vendedor')
   }
 
+  getRepartidor(): any {
+    return localStorage.getItem('repartidor')
+  }
+
   setPyme(pyme: any) {
     localStorage.setItem('id_pyme', JSON.stringify(pyme.id_pyme))
   }

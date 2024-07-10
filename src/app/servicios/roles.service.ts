@@ -19,4 +19,8 @@ export class RolesService {
   crearVendedor(id: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/roles/crearVendedor`, id);
   }
+
+  crearRepartidor(id: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/roles/crearRepartidor`, id);
+  }
 }

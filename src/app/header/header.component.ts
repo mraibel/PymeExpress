@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-
   // Variables para el manejo del carro
   mostrarCarrito: boolean = false;
 
@@ -29,11 +28,19 @@ export class HeaderComponent {
 
   pymeProductos(): void {
     const id_pyme = this.autenticacionServicio.getPyme();
-    console.log(id_pyme)
     if (id_pyme) {
       this.router.navigate(['/productos-pyme/' + id_pyme]);
     } else {
       console.error('Este usuario no es vendedor');
+    }
+  }
+
+  repartidorOrdenes() {
+    const id_rep = this.autenticacionServicio.getId()
+    if (id_rep) {
+      this.router.navigate(['/repartos/' + id_rep]);
+    } else {
+      console.error('Este usuario no es repartidor');
     }
   }
 
