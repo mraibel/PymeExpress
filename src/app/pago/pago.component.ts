@@ -18,6 +18,8 @@ export class PagoComponent implements OnInit{
 
   metodoPago: any
 
+  cupon: string = '';
+
   constructor(
     public carritoServicio: CarritoService,
     private router: Router,
@@ -53,13 +55,20 @@ export class PagoComponent implements OnInit{
     }
     return orden
   }
-
-  aplicarCupon() {
-    // Implementar la lógica para aplicar el cupón
-  }
-
   estaAutenticado(): boolean {
     return this.authService.getToken() !== null; 
+  }
+
+  aplicarCupon(): void {
+    this.carritoServicio.aplicarDescuento(this.cupon);
+  }
+
+  obtenerTotal(): number {
+    return this.carritoServicio.obtenerTotal();
+  }
+
+  obtenerProductos(): any[] {
+    return this.carritoServicio.obtenerProductos();
   }
 
   async createCheckoutButton(id:any, bricks: any) {

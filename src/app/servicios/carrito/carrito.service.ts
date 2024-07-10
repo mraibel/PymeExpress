@@ -19,6 +19,7 @@ export class CarritoService {
   }
 
   productos: Matriz = [];
+  descuento: number = 0;
 
   agregarProducto = (producto: any, cantidad: number) => {
     let encontrado = false
@@ -51,6 +52,9 @@ export class CarritoService {
     for (let i = 0; i < this.productos.length; i++) {
       total = total + this.productos[i][0].precio * this.productos[i][1]
     }
+    if (this.descuento > 0) {
+      total -= (total * (this.descuento / 100));
+    }
     return total
   }
 
@@ -60,6 +64,7 @@ export class CarritoService {
 
   limpiarCarrito(): void {
     this.productos = []
+    this.descuento = 0;
     this.actualizarStorage()
     this.toastr.info('Carrito vaciado con éxito')
   }
@@ -118,6 +123,15 @@ export class CarritoService {
       }
     }
 
+  }
+
+  aplicarDescuento(codigo: string): void {
+    if (codigo === 'DESC10') {
+      this.descuento = 10;
+      this.toastr.success('Descuento del 10% aplicado');
+    } else {
+      this.toastr.error('Código de descuento inválido');
+    }
   }
 
   actualizarStorage(): void {

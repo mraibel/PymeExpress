@@ -33,7 +33,9 @@ import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SliderModule } from 'primeng/slider';
 import { PaginatorModule } from 'primeng/paginator';
+import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
+
 
 @NgModule({
   declarations: [
@@ -57,8 +59,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     ListarRepartosComponent,
     BuscarOrdenComponent,
     PagoComponent,
-    CrearPymeComponent
-
+    CrearPymeComponent,
+    HistorialCompraComponent
   ],
   imports: [
     BrowserModule,

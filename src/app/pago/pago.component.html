@@ -2,54 +2,28 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
         <h3 class="text-center mb-4">Resumen de la Compra</h3>
-  
-        <!-- Formulario de Datos del Cliente -->
-        <div class="card mb-4" *ngIf="!estaAutenticado()">
-          <div class="card-header">
-            <h5>Datos del Cliente</h5>
+    <!-- pago.component.html -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5>Aplicar Cupón</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="cupon">Código de Cupón</label>
+            <input type="text" class="form-control" id="cupon" [(ngModel)]="cupon" name="cupon">
+            <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
           </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="nombre">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombre" required>
-              </div>
-              <div class="form-group">
-                <label for="direccion">Dirección de Envío</label>
-                <input type="text" class="form-control" id="direccion" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" required>
-              </div>
-              <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" class="form-control" id="telefono" required>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- Aplicar Cupón -->
-        <div class="card mb-4">
-          <div class="card-header">
-            <h5>Aplicar Cupón</h5>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="cupon">Código de Cupón</label>
-                <input type="text" class="form-control" id="cupon">
-                <button type="button" class="btn btn-primary mt-2" (click)="aplicarCupon()">Aplicar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <tfoot class="d-flex justify-content-end">
-            <tr>
-              <td colspan="4" class="text-right"><strong>Total a pagar:</strong></td>
-              <td class="text-center"><strong>{{carritoServicio.obtenerTotal() | currency:'CLP'}}</strong></td>
-            </tr>
-          </tfoot>
+        </form>
+      </div>
+    </div>
+    <tfoot class="d-flex justify-content-end">
+      <tr>
+        <td colspan="4" class="text-right"><strong>Total a pagar:</strong></td>
+        <td class="text-center"><strong>{{ obtenerTotal() | currency:'CLP' }}</strong></td>
+      </tr>
+    </tfoot>
+
         <!-- Botones Finales -->
         <div class=" mt-4">
           <div>

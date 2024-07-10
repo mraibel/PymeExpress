@@ -11,6 +11,7 @@ import { CrearRepartidorComponent } from './crear-repartidor/crear-repartidor.co
 import { ListarRepartosComponent } from './listar-repartos/listar-repartos.component';
 import { PagoComponent } from './pago/pago.component';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
+import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 
 // Guards
 import { pymeGuard } from './guards/pyme.guard';
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'crear-producto', component: CrearProductoComponent, canActivate:[vendedorGuard] },
   { path: 'productos', component: GondolaProductosComponent },
   { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]},
+  { path: 'historial-compra', component: HistorialCompraComponent},
   { path: 'buscar-orden', component: BuscarOrdenComponent, canActivate:[repartidorGuard]},
   { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[sesionIniciadaGuard]}
 ];
