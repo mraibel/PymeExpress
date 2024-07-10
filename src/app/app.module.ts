@@ -28,6 +28,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { CrearRepartidorComponent } from './crear-repartidor/crear-repartidor.component';
 import { ListarRepartosComponent } from './listar-repartos/listar-repartos.component';
+import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ListarRepartosComponent } from './listar-repartos/listar-repartos.compo
     ProductosRecomendadosComponent,
     CrearPymeComponent,
     CrearRepartidorComponent,
-    ListarRepartosComponent
+    ListarRepartosComponent,
+    BuscarOrdenComponent
   ],
   imports: [
     BrowserModule,

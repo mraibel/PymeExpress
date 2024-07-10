@@ -5,11 +5,11 @@ import { AutenticacionService } from '../servicios/autenticacion/autenticacion.s
 import { RepartidorService } from '../servicios/repartidor.service';
 
 @Component({
-  selector: 'app-listar-repartos',
-  templateUrl: './listar-repartos.component.html',
-  styleUrls: ['./listar-repartos.component.css']
+  selector: 'app-buscar-orden',
+  templateUrl: './buscar-orden.component.html',
+  styleUrl: './buscar-orden.component.css'
 })
-export class ListarRepartosComponent implements OnInit {
+export class BuscarOrdenComponent implements OnInit{
   repartos: any[] = [];
 
   constructor(
@@ -23,7 +23,7 @@ export class ListarRepartosComponent implements OnInit {
   ngOnInit(): void {
     const id = this.autenticacionServicio.getId();
     if (id !== null) {
-      this.repartidorService.getRepartos(id).subscribe(
+      this.repartidorService.getRepartosSinRepartidor().subscribe(
         repartos => {
           this.repartos = repartos;
         },

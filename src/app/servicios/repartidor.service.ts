@@ -15,7 +15,7 @@ export class RepartidorService {
   constructor(private http: HttpClient) { }
 
   getRepartidores(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/usuarios/repartidores`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/usuarios/repartidores/`).pipe(
       map((res: any) => {
         this.repartidores = res
         return res
@@ -25,5 +25,9 @@ export class RepartidorService {
   
   getRepartos(id: number): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/pedidos/repartidor/${id}`).pipe(map((data:any) => data));
+  }
+
+  getRepartosSinRepartidor(): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/pedidos/sinrepartidor/`).pipe(map((data:any) => data));
   }
 }
