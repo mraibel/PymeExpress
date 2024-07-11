@@ -10,6 +10,7 @@ export class PedidosService {
 
   private apiUrl = environment.apiUrl;
   public pedidosVendedor: any[] = []
+  public pedidosCliente: any[] = []
 
   constructor(
     private http: HttpClient
