@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'crear-producto', component: CrearProductoComponent, canActivate:[vendedorGuard] },
   { path: 'productos', component: GondolaProductosComponent },
   { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]},
-  { path: 'historial-compra', component: HistorialCompraComponent},
+  { path: 'historial-compras/:id', component: HistorialCompraComponent},
   { path: 'buscar-orden', component: BuscarOrdenComponent, canActivate:[repartidorGuard]},
   { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]},
   { path: 'historial-ventas/:id', component:HistorialVentasComponent }
