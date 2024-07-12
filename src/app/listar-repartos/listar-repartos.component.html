@@ -1,8 +1,18 @@
 <div class="container mt-4">
-    <h2 class="mb-4">Repartos disponibles</h2>
-    <div class="d-flex justify-content-between mb-3">
-        <button class="btn btn-success" (click)="buscarOrden()">Recibir Orden Nueva</button>
-    </div>
+  <h2 class="mb-4">Tus repartos</h2>
+  <div class="d-flex justify-content-between mb-3">
+    <button class="btn btn-success" (click)="buscarOrden()">Recibir Orden Nueva</button>
+    <button class="btn btn-primary" (click)="comenzarReparto()">Comenzar Reparto</button>
+  </div>
+  
+  <!-- Mostrar mensaje y botón cuando no hay repartos -->
+  <div *ngIf="!repartos.length" class="text-center">
+    <h2><p>No tienes repartos pendientes</p></h2>
+    <button class="btn btn-success mt-3" (click)="buscarOrden()">Buscar repartos</button>
+  </div>
+  
+  <!-- Mostrar lista de repartos cuando hay elementos en la lista -->
+  <div *ngIf="repartos.length">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="selectAll" (change)="toggleSelectAll($event)">
@@ -10,23 +20,25 @@
       </div>
     </div>
     <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center" 
-          *ngFor="let orden of repartos" 
-          [ngClass]="{'bg-secondary text-white': !orden.activo}">
+      <li class="list-group-item" *ngFor="let orden of repartos" [ngClass]="{'bg-secondary text-white': !orden.activo}">
         <div class="d-flex align-items-center">
           <input type="checkbox" class="form-check-input me-3" [(ngModel)]="orden.selected">
-          <p>{{ orden.espcificaciones}}</p>
+          <div class="flex-grow-1">
+            <p>{{ orden.especificaciones }}</p>
+            <div id="map-{{orden.id_pedido}}" style="width: 100%; height: 300px;" class="mt-3"></div>
+          </div>
           <div class="dropdown ms-3">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               Opciones
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" >Editar</a></li>
-              <li><a class="dropdown-item text-danger" >Cancelar</a></li>
+              <li><a class="dropdown-item">Reportar problema</a></li>
+              <li><a class="dropdown-item text-danger">Cancelar</a></li>
             </ul>
           </div>
         </div>
       </li>
     </ul>
   </div>
-  
+</div>
+<p></p>
