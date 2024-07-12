@@ -16,7 +16,9 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
 import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
+import { RepartiendoComponent } from './repartiendo/repartiendo.component';
 import { DetalleCompraComponent } from './detalle-compra/detalle-compra.component';
+
 
 // Guards
 import { pymeGuard } from './guards/pyme.guard';
@@ -25,7 +27,7 @@ import { vendedorGuard } from './guards/vendedor.guard';
 import { sesionIniciadaGuard } from './guards/sesion-iniciada.guard';
 import { repartidorGuard } from './guards/repartidor.guard';
 import { esVendedorGuard } from './guards/es-vendedor.guard';
-import { RepartiendoComponent } from './repartiendo/repartiendo.component';
+import { pagoGuard } from './guards/pago.guard';
 
 
 
@@ -34,7 +36,7 @@ const routes: Routes = [
   { path: 'producto/:id_producto', component: ProductoComponent },
   { path: 'inicioSesion', component: InicioSesionComponent, canActivate:[iniciadoGuard] },
   { path: 'registro', component: RegistroComponent, canActivate:[iniciadoGuard] },
-  { path: 'pago', component: PagoComponent },
+  { path: 'pago', component: PagoComponent, canActivate:[pagoGuard] },
   { path: 'productos-pyme/:id', component: ListarProductosComponent, canActivate:[pymeGuard]},
   { path: 'repartos/:id', component: ListarRepartosComponent, canActivate:[repartidorGuard]},
   { path: 'crear-producto', component: CrearProductoComponent, canActivate:[vendedorGuard] },
