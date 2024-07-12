@@ -164,7 +164,7 @@ export class PagoComponent implements OnInit{
       precio: totalOrden,
       estado: true,
       productos: productosOrden,
-      id_cliente: idCliente
+      id_usuario: idCliente
     }
     return orden
   }
