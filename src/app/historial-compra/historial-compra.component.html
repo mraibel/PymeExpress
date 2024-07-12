@@ -1,7 +1,28 @@
 <div class="container mt-4">
-    <h2>Mis Compras</h2>
-    @for(compra of compras; track compra) {
-      <h4>{{compra.especificaciones}}</h4>
-    }
+  <h2>Mis Compras</h2>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card-columns">
+        <div class="card mb-4" *ngFor="let compra of compras; let i = index">
+          <div class="card-header">
+            <strong>Fecha y Hora de Compra:</strong> {{ compra.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+          </div>
+          <div class="row g-0">
+            <div class="col-md-3">
+              <img [src]="compra.productoPedido[0].imagen | imagenProducto:'../../assets/box.png'" class="img-fluid" alt="Imagen del Producto">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body">
+                <h2>Compra {{ (i + 1) | number: '3.0-0' }}</h2>
+                <h2 class="card-title mb-4">{{ compra.nombre }}</h2>
+                <h3 class="card-title mb-4">$ {{ compra.precio }}</h3>
+                <p class="card-text">Id del pedido: N° {{ compra.id_pedido }}</p>
+                <a [routerLink]="['/detalle-compra', compra.id_pedido]" class="btn btn-primary">Ver Compra</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-  
