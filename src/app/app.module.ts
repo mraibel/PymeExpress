@@ -36,6 +36,7 @@ import { SliderModule } from 'primeng/slider';
 import { PaginatorModule } from 'primeng/paginator';
 import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { DetalleVentaComponent } from './detalle-venta/detalle-venta.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     PagoComponent,
     CrearPymeComponent,
     HistorialCompraComponent,
-    HistorialVentasComponent
+    HistorialVentasComponent,
+    DetalleVentaComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
 import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
+import { DetalleVentaComponent } from './detalle-venta/detalle-venta.component';
 
 // Guards
 import { pymeGuard } from './guards/pyme.guard';
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'historial-compra', component: HistorialCompraComponent},
   { path: 'buscar-orden', component: BuscarOrdenComponent, canActivate:[repartidorGuard]},
   { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]},
-  { path: 'historial-ventas/:id', component:HistorialVentasComponent }
+  { path: 'historial-ventas/:id', component:HistorialVentasComponent },
+  { path: 'detalle-venta/:id', component:DetalleVentaComponent }
 ];
 
 @NgModule({

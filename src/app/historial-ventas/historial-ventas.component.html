@@ -1,5 +1,28 @@
-@for(pedido of pedidos; track pedido) {
-    <h1>{{pedido.especificaciones}}</h1>
-} @empty {
-    <h1>no hay na</h1>
-}
+
+<div class="container mt-4">
+    <h1>Mis Ventas</h1>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card-columns">
+          <div class="card mb-4" *ngFor="let pedido of pedidos; let i = index">
+            <div class="card-header">
+              <strong>Fecha y Hora de Venta:</strong> {{ pedido?.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+            </div>
+            <div class="row g-0">
+                <img style="width: 23%;" [src]="pedido?.productoPedido.imagen | imagenProducto:'../../assets/box.png'" class="card-img-top" alt="Imagen del Producto">
+              <div class="col-md-9">
+                <div class="card-body">
+                <h2>Venta {{ (i + 1) | number: '3.0-0' }}</h2>
+                <h3 class="card-title mb-4">{{ pedido?.nombreProducto }}</h3>
+                  <h5 class="card-title">Especificaciones: {{ pedido?.especificaciones }}</h5>
+                  <h5 class="card-title">ID del Pedido: {{ pedido?.id_pedido }}</h5>
+                  <a [routerLink]="['/detalle-venta', pedido.id_pedido]" class="btn btn-primary mt-5">Ver Venta</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
