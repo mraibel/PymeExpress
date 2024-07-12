@@ -20,6 +20,7 @@ export class HistorialVentasComponent implements OnInit {
       this.pedidosServicio.getPedidosVendedor(params.get('id')).subscribe((data: any) => {
         this.pedidosServicio.pedidosVendedor = data
         this.pedidos = data
+        console.log(data)
       })
     })
 

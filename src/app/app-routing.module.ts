@@ -16,9 +16,9 @@ import { CrearPymeComponent } from './crear-pyme/crear-pyme.component';
 import { HistorialCompraComponent } from './historial-compra/historial-compra.component';
 import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
 import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
+import { DetalleVentaComponent } from './detalle-venta/detalle-venta.component';
 import { RepartiendoComponent } from './repartiendo/repartiendo.component';
 import { DetalleCompraComponent } from './detalle-compra/detalle-compra.component';
-
 
 // Guards
 import { pymeGuard } from './guards/pyme.guard';
@@ -47,6 +47,7 @@ const routes: Routes = [
   { path: 'repartiendo', component: RepartiendoComponent, canActivate:[repartidorGuard]},
   { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]},
   { path: 'historial-ventas/:id', component:HistorialVentasComponent },
+  { path: 'detalle-venta/:id', component:DetalleVentaComponent },
   { path: 'detalle-compra/:id', component: DetalleCompraComponent }
 ];
 

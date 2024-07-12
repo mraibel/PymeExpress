@@ -46,12 +46,7 @@ export class HeaderComponent {
 
   historialVentas(): void {
     const id_vendedor = this.autenticacionServicio.getId()
-    if(id_vendedor) {
-      this.pedidosServicio.getPedidosVendedor(id_vendedor).subscribe((data: any) => {
-        this.pedidosServicio.pedidosVendedor = data
-        this.router.navigate(['/historial-ventas/' + id_vendedor]);
-      })
-    }
+    this.router.navigate(['/historial-ventas/' + id_vendedor]);
   }
 
   repartidorOrdenes() {
