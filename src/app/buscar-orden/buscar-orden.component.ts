@@ -5,6 +5,7 @@ import { AutenticacionService } from '../servicios/autenticacion/autenticacion.s
 import { RepartidorService } from '../servicios/repartidor.service';
 import * as L from 'leaflet';
 import { LatLngExpression } from 'leaflet';
+import { PedidosService } from '../servicios/pedidos.service';
 
 @Component({
   selector: 'app-buscar-orden',
@@ -19,10 +20,29 @@ export class BuscarOrdenComponent implements OnInit, AfterViewInit {
     private router: Router,
     private modalService: BsModalService,
     private repartidorService: RepartidorService,
-    private autenticacionServicio: AutenticacionService
+    private autenticacionServicio: AutenticacionService,
+    private pedidosServicio: PedidosService
   ) { }
 
   ngOnInit(): void {
+    const id = this.autenticacionServicio.getId();
+    if (id !== null) {
+      this.repartidorService.getRepartosSinRepartidor().subscribe(
+        repartos => {
+          this.repartos = repartos;
+          console.log('Repartos cargados:', this.repartos);
+          this.initMaps();
+        },
+        error => {
+          console.error('Error al obtener los repartos', error);
+        }
+      );
+    } else {
+      console.error('No se pudo obtener el ID del repartidor');
+    }
+  }
+
+  cargarRepartosSinRepartidor(): void {
     const id = this.autenticacionServicio.getId();
     if (id !== null) {
       this.repartidorService.getRepartosSinRepartidor().subscribe(
@@ -100,11 +120,20 @@ export class BuscarOrdenComponent implements OnInit, AfterViewInit {
   }
 
   aceptarReparto(reparto: any): void {
-    console.log(`Reparto aceptado: ${reparto.id}`);
-    // Aquí puedes agregar la lógica para manejar la aceptación del reparto
+    const idRepartidor = localStorage.getItem('id_usuario');
+    if (idRepartidor) {
+      this.pedidosServicio.actualizarPedido(reparto.id_pedido, { id_repartidor: idRepartidor }).subscribe(
+        response => {
+          console.log(`Reparto aceptado: ${reparto.id_pedido}`);
+          this.cargarRepartosSinRepartidor();  // Actualizar la lista de pedidos sin repartidor
+        },
+        error => {
+          console.error('Error al aceptar el reparto', error);
+        }
+      );
+    } else {
+      console.error('No se pudo obtener el ID del repartidor desde el localStorage');
+    }
   }
 
-  buscarOrden() {
-    this.router.navigate(['/buscar-orden']);
-  }
 }

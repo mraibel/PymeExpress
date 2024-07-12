@@ -24,7 +24,7 @@
                 <i-bs name="person-circle"></i-bs> ⋮
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a [routerLink]="['/historial-compra']" class="dropdown-item">Historial compra</a></li>
+                <li><a (click)="historialCompras()" class="dropdown-item">Historial compra</a></li>
                 @if(autenticacionServicio.getVendedor() == 'false') {
                     <li><a class="dropdown-item" [routerLink]="['/crear-pyme']">Vender Productos</a></li>
                 } @else {

@@ -30,6 +30,8 @@ import { CrearRepartidorComponent } from './crear-repartidor/crear-repartidor.co
 import { ListarRepartosComponent } from './listar-repartos/listar-repartos.component';
 import { BuscarOrdenComponent } from './buscar-orden/buscar-orden.component';
 import { HistorialVentasComponent } from './historial-ventas/historial-ventas.component';
+import { DetalleCompraComponent } from './detalle-compra/detalle-compra.component';
+import { RepartiendoComponent } from './repartiendo/repartiendo.component';
 
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SliderModule } from 'primeng/slider';
@@ -64,7 +66,9 @@ import { DetalleVentaComponent } from './detalle-venta/detalle-venta.component';
     CrearPymeComponent,
     HistorialCompraComponent,
     HistorialVentasComponent,
-    DetalleVentaComponent
+    DetalleVentaComponent,
+    DetalleCompraComponent,
+    RepartiendoComponent
   ],
   imports: [
     BrowserModule,

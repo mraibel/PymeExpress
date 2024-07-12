@@ -162,7 +162,7 @@ export class PagoComponent implements OnInit{
     const orden = {
       especificaciones: especificacionesOrden,
       precio: totalOrden,
-      estado: false,
+      estado: true,
       productos: productosOrden,
       id_cliente: idCliente
     }

@@ -31,6 +31,8 @@ export class InicioSesionComponent {
       this.autenticacionServicio.login(usuario).subscribe(() => {
         this.toastr.success('Inicio con exito!')
         this.router.navigate([''])
+      }, error => {
+        this.toastr.error(error.error.error)
       })
     } else {
       this.formUser.markAllAsTouched();
