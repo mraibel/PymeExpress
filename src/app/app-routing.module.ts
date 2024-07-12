@@ -25,6 +25,7 @@ import { vendedorGuard } from './guards/vendedor.guard';
 import { sesionIniciadaGuard } from './guards/sesion-iniciada.guard';
 import { repartidorGuard } from './guards/repartidor.guard';
 import { esVendedorGuard } from './guards/es-vendedor.guard';
+import { RepartiendoComponent } from './repartiendo/repartiendo.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'crear-pyme', component: CrearPymeComponent, canActivate:[sesionIniciadaGuard]},
   { path: 'historial-compras/:id', component: HistorialCompraComponent},
   { path: 'buscar-orden', component: BuscarOrdenComponent, canActivate:[repartidorGuard]},
+  { path: 'repartiendo', component: RepartiendoComponent, canActivate:[repartidorGuard]},
   { path: 'crear-repartidor', component: CrearRepartidorComponent, canActivate:[esVendedorGuard]},
   { path: 'historial-ventas/:id', component:HistorialVentasComponent },
   { path: 'detalle-compra/:id', component: DetalleCompraComponent }
