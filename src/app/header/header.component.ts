@@ -30,6 +30,11 @@ export class HeaderComponent {
     this.mostrarCarrito = false;
   }
 
+  historialCompras(): void {
+    const id_cliente = this.autenticacionServicio.getId()
+    this.router.navigate(['/historial-compras/' + id_cliente])
+  }
+
   pymeProductos(): void {
     const id_pyme = this.autenticacionServicio.getPyme();
     if (id_pyme) {

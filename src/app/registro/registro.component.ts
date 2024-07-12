@@ -42,8 +42,10 @@ export class RegistroComponent {
       const usuario = this.formUser.value
       console.log(usuario)
       this.autenticacionServicio.register(usuario).subscribe(() => {
-        this.toastr.success('Registrado con exito!')
         this.router.navigate(['/inicioSesion'])
+        alert('Revisa tu correo para confirmar tu cuenta')
+      }, e => {
+        alert('Ocurrió un problema durante el registro')
       })
     } else {
       this.formUser.markAllAsTouched();
